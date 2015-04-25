@@ -66,7 +66,7 @@ $(DIGESTS_FILE):
 	done
 
 kernel_module_compile_target:
-	$(RUN) $(MAKE) modules
+	$(RUN) $(MAKE) $(MAKE_OPT) modules
 
 kernel_extract_target:
 	mkdir -p $(KERNEL_DIR)
