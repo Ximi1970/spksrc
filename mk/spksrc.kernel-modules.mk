@@ -3,6 +3,7 @@ SHELL := $(SHELL) -e
 default: all
 
 WORK_DIR := $(shell pwd)/work
+include ../../mk/spksrc.common.mk
 include ../../mk/spksrc.directories.mk
 
 # Configure the included makefiles
