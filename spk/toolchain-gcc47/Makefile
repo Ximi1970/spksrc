@@ -88,20 +88,18 @@ clean-%:
 		[ "$$CLEANUP" == "qoriq" ] ; then \
 		echo "Cleaning" $$CLEANUP-$(DEFAULT_TC) ; \
 		rm -rf work-$$CLEANUP-$(DEFAULT_TC) ; \
-		rm -rf ../../native/$(SPK_NAME)/work-native/work-$$CLEANUP ; \
-		rm -f ../../native/$(SPK_NAME)/work-native/.*$$CLEANUP*_done ; \
-		rm -rf ../../native/binutils/work-native/work-$$CLEANUP-gcc$(GCC_VER) ; \
-		rm -f ../../native/binutils/work-native/.*$$CLEANUP-gcc$(GCC_VER)*_done ; \
-		rm -rf ../../native/gcc$(GCC_VER)-bootstrap/work-native/work-$$CLEANUP ; \
+		rm -rf ../../native/binutils/work-native/work-$$CLEANUP-$(DEFAULT_TC)-gcc$(GCC_VER) ; \
+		rm -f ../../native/binutils/work-native/.*$$CLEANUP-$(DEFAULT_TC)-gcc$(GCC_VER)*_done ; \
+		rm -rf ../../native/gcc$(GCC_VER)-bootstrap/work-native/work-$$CLEANUP-$(DEFAULT_TC) ; \
 		rm -f ../../native/gcc$(GCC_VER)-bootstrap/work-native/.*$$CLEANUP*_done ; \
-		rm -rf ../../native/gcc$(GCC_VER)/work-native/work-$$CLEANUP ; \
+		rm -rf ../../native/gcc$(GCC_VER)/work-native/work-$$CLEANUP-$(DEFAULT_TC) ; \
 		rm -f ../../native/gcc$(GCC_VER)/work-native/.*$$CLEANUP*_done ; \
-		rm -rf ../../native/eglibc/work-native/work-$$CLEANUP-gcc$(GCC_VER) ; \
-		rm -rf ../../native/eglibc/work-native/install-$$CLEANUP-gcc$(GCC_VER) ; \
-		rm -f ../../native/eglibc/work-native/.*$$CLEANUP-gcc$(GCC_VER)*_done ; \
-		rm -rf ../../native/glibc/work-native/work-$$CLEANUP-gcc$(GCC_VER) ; \
-		rm -rf ../../native/glibc/work-native/install-$$CLEANUP-gcc$(GCC_VER) ; \
-		rm -f ../../native/glibc/work-native/.*$$CLEANUP-gcc$(GCC_VER)*_done ; \
+		rm -rf ../../native/eglibc/work-native/work-$$CLEANUP-$(DEFAULT_TC)-gcc$(GCC_VER) ; \
+		rm -rf ../../native/eglibc/work-native/install-$$CLEANUP-$(DEFAULT_TC)-gcc$(GCC_VER) ; \
+		rm -f ../../native/eglibc/work-native/.*$$CLEANUP-$(DEFAULT_TC)-gcc$(GCC_VER)*_done ; \
+		rm -rf ../../native/glibc/work-native/work-$$CLEANUP-$(DEFAULT_TC)-gcc$(GCC_VER) ; \
+		rm -rf ../../native/glibc/work-native/install-$$CLEANUP-$(DEFAULT_TC)-gcc$(GCC_VER) ; \
+		rm -f ../../native/glibc/work-native/.*$$CLEANUP-$(DEFAULT_TC)-gcc$(GCC_VER)*_done ; \
 		rm -rf ../../toolchains/syno-$$CLEANUP-$(DEFAULT_TC)-gcc$(GCC_VER) ; \
 	else \
 		echo "Unknown architecture" ; \
