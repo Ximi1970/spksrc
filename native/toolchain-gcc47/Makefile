@@ -29,7 +29,7 @@ $(error This package is part of a toolchain. Please start with the package: spk/
 endif
 
 ifeq ($(MAKE_TOOLCHAIN_GCC_VER),47)
-TOOLCHAIN_PATH = $(WORK_DIR)/../../../toolchains/syno-$(ARCH)-gcc$(MAKE_TOOLCHAIN_GCC_VER)/work/$(MAKE_TOOLCHAIN_TARGET)
+TOOLCHAIN_PATH = $(WORK_DIR)/../../../toolchains/syno-$(ARCH)-$(DEFAULT_TC)-gcc$(MAKE_TOOLCHAIN_GCC_VER)/work/$(MAKE_TOOLCHAIN_TARGET)
 else
 $(error This package is part of a toolchain. Please start with the package: spk/toolchain-gcc47 arch-<arch> )
 endif
@@ -66,9 +66,9 @@ myPreDepend:
 .PHONY: myConfigure
 myConfigure:
 	$(RUN) echo ; \
-		rm -rf work-$(ARCH) ; \
-		mkdir -p work-$(ARCH) ; \
-		if [ -f *-$(PKG_NAME)-$(PKG_VERS)/README.md ] ; then mv *-$(PKG_NAME)-$(PKG_VERS) work-$(ARCH) ; fi
+		rm -rf work-$(ARCH)-$(DEFAULT_TC) ; \
+		mkdir -p work-$(ARCH)-$(DEFAULT_TC) ; \
+		if [ -f *-$(PKG_NAME)-$(PKG_VERS)/README.md ] ; then mv *-$(PKG_NAME)-$(PKG_VERS) work-$(ARCH)-$(DEFAULT_TC) ; fi
 
 .PHONY: myCompile
 myCompile:

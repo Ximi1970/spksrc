@@ -65,7 +65,7 @@ MAIN_MAKE_TOOLCHAIN_GCC_VER = $(GCC_VER)
 MAKE = make MAKE_TOOLCHAIN_TARGET=$(MAIN_MAKE_TOOLCHAIN_TARGET) MAKE_TOOLCHAIN_GCC_VER=$(MAIN_MAKE_TOOLCHAIN_GCC_VER) 
 
 
-DELETE_COOKIES = $(shell rm -f work-*/.depend_done)
+DELETE_COOKIES = $(shell rm -f work-*-$(DEFAULT_TC)/.depend_done)
 ifeq ($(DELETE_COOKIES),)
 endif
 
@@ -86,8 +86,8 @@ clean-%:
 		[ "$$CLEANUP" == "ppc853x" ] || \
 		[ "$$CLEANUP" == "ppc854x" ] || \
 		[ "$$CLEANUP" == "qoriq" ] ; then \
-		echo "Cleaning" $$CLEANUP ; \
-		rm -rf work-$$CLEANUP ; \
+		echo "Cleaning" $$CLEANUP-$(DEFAULT_TC) ; \
+		rm -rf work-$$CLEANUP-$(DEFAULT_TC) ; \
 		rm -rf ../../native/$(SPK_NAME)/work-native/work-$$CLEANUP ; \
 		rm -f ../../native/$(SPK_NAME)/work-native/.*$$CLEANUP*_done ; \
 		rm -rf ../../native/binutils/work-native/work-$$CLEANUP-gcc$(GCC_VER) ; \
@@ -102,21 +102,21 @@ clean-%:
 		rm -rf ../../native/glibc/work-native/work-$$CLEANUP-gcc$(GCC_VER) ; \
 		rm -rf ../../native/glibc/work-native/install-$$CLEANUP-gcc$(GCC_VER) ; \
 		rm -f ../../native/glibc/work-native/.*$$CLEANUP-gcc$(GCC_VER)*_done ; \
-		rm -rf ../../toolchains/syno-$$CLEANUP-gcc$(GCC_VER) ; \
+		rm -rf ../../toolchains/syno-$$CLEANUP-$(DEFAULT_TC)-gcc$(GCC_VER) ; \
 	else \
 		echo "Unknown architecture" ; \
 	fi
 
 clean-all-arch:
 	@echo "Cleaning all toolchains" ; \
-	rm -rf work-* ; \
+	rm -rf work-*-$(DEFAULT_TC) ; \
 	rm -rf ../../native/$(SPK_NAME)/work-native ; \
 	rm -rf ../../native/binutils/work-native ; \
 	rm -rf ../../native/gcc$(GCC_VER)-bootstrap/work-native ; \
 	rm -rf ../../native/gcc$(GCC_VER)/work-native ; \
 	rm -rf ../../native/eglibc/work-native ; \
 	rm -rf ../../native/glibc/work-native ; \
-	rm -rf ../../toolchains/syno-*-gcc$(GCC_VER)
+	rm -rf ../../toolchains/syno-*-$(DEFAULT_TC)-gcc$(GCC_VER)
 
 .PHONY: myPreDepend
 myPreDepend:
@@ -134,11 +134,11 @@ myPreDepend:
 	echo "Architecture:" $(ARCH) ; \
 	echo "Target:" $(MAIN_MAKE_TOOLCHAIN_TARGET) ; \
 	echo "Gcc:" $(MAIN_MAKE_TOOLCHAIN_GCC_VER) ; \
-	if [ ! -d  ../../toolchains/syno-$(ARCH)-gcc$(GCC_VER) ] ; then \
-		mkdir -p ../../toolchains/syno-$(ARCH)-gcc$(GCC_VER) ; \
-		pushd ../../toolchains/syno-$(ARCH)-gcc$(GCC_VER) ; \
+	if [ ! -d  ../../toolchains/syno-$(ARCH)-$(DEFAULT_TC)-gcc$(GCC_VER) ] ; then \
+		mkdir -p ../../toolchains/syno-$(ARCH)-$(DEFAULT_TC)-gcc$(GCC_VER) ; \
+		pushd ../../toolchains/syno-$(ARCH)-$(DEFAULT_TC)-gcc$(GCC_VER) ; \
 		rm -f Makefile ; \
-		echo "TC_NAME = syno-$(ARCH)-gcc$(GCC_VER)" > Makefile ; \
+		echo "TC_NAME = syno-$(ARCH)-$(DEFAULT_TC)-gcc$(GCC_VER)" > Makefile ; \
 		echo >> Makefile ; \
 		echo "TC_DIST_NAME = toolchain-gcc$(GCC_VER)-1.0.0.zip" >> Makefile ; \
 		echo >> Makefile ; \
@@ -160,4 +160,4 @@ myPreDepend:
 
 .PHONY: myPreStrip
 myPreStrip:
-	$(eval STRIP := ../../toolchains/syno-$(ARCH)-gcc$(GCC_VER)/work/$(MAIN_MAKE_TOOLCHAIN_TARGET)/bin/$(MAIN_MAKE_TOOLCHAIN_TARGET)-strip)
+	$(eval STRIP := ../../toolchains/syno-$(ARCH)-$(DEFAULT_TC)-gcc$(GCC_VER)/work/$(MAIN_MAKE_TOOLCHAIN_TARGET)/bin/$(MAIN_MAKE_TOOLCHAIN_TARGET)-strip)

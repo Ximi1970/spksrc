@@ -35,13 +35,13 @@ $(error This package is part of a toolchain. To use this packages, please run: s
 endif
 
 ifeq ($(MAKE_TOOLCHAIN_GCC_VER),47)
-TOOLCHAIN_PATH = $(WORK_DIR)/../../../toolchains/syno-$(ARCH)-gcc$(MAKE_TOOLCHAIN_GCC_VER)/work/$(MAKE_TOOLCHAIN_TARGET)
+TOOLCHAIN_PATH = $(WORK_DIR)/../../../toolchains/syno-$(ARCH)-$(DEFAULT_TC)-gcc$(MAKE_TOOLCHAIN_GCC_VER)/work/$(MAKE_TOOLCHAIN_TARGET)
 else
 $(error This package is part of a toolchain. To use this packages, please run: spk/toolchain-gcc47 arch-<arch> )
 endif
 
 
-COOKIE_PREFIX=$(PKG_NAME)-$(ARCH)-
+COOKIE_PREFIX=$(PKG_NAME)-$(ARCH)-$(DEFAULT_TC)-
 
 
 CONFIGURE_ARGS =  --build=$$BUILD_HOST --host=$$BUILD_HOST --target=$(MAKE_TOOLCHAIN_TARGET)
@@ -68,10 +68,10 @@ include ../../mk/spksrc.native-cc.mk
 myConfigure:
 	$(RUN) echo ; \
 		cd .. ; \
-		mkdir -p work-$(ARCH)/build ; \
-		if [ -f $(PKG_DIR)/configure ] ; then mv $(PKG_DIR) work-$(ARCH) ; fi ; \
+		mkdir -p work-$(ARCH)-$(DEFAULT_TC)/build ; \
+		if [ -f $(PKG_DIR)/configure ] ; then mv $(PKG_DIR) work-$(ARCH)-$(DEFAULT_TC) ; fi ; \
 		mkdir -p $(PKG_DIR) ; \
-		cd work-$(ARCH)/$(PKG_DIR) ; \
+		cd work-$(ARCH)-$(DEFAULT_TC)/$(PKG_DIR) ; \
 		sed -i "s@TOOLCHAIN=@TOOLCHAIN=/usr/local/toolchain-gcc$(MAKE_TOOLCHAIN_GCC_VER)@" ld_prefix-fix.sh ; \
 		bash ld_prefix-fix.sh ; \
 		export BUILD_HOST=`echo ${MACHTYPE} | sed -e 's/-\([^-]*\)/-build_\1/'` ; \
@@ -81,11 +81,11 @@ myConfigure:
 .PHONY: myCompile
 myCompile:
 	$(RUN) echo ; \
-		cd ../work-$(ARCH)/build ; \
+		cd ../work-$(ARCH)-$(DEFAULT_TC)/build ; \
 		make $(MAKE_OPT)
 
 .PHONY: myInstall
 myInstall:
 	$(RUN) echo ; \
-		cd ../work-$(ARCH)/build ; \
+		cd ../work-$(ARCH)-$(DEFAULT_TC)/build ; \
 		make install

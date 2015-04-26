@@ -40,4 +40,3 @@ myCompile:
 myInstall:
 	$(RUN) $(MAKE) install prefix=$(STAGING_INSTALL_PREFIX)
 	$(RUN) rm $(STAGING_INSTALL_PREFIX)/$(LIBDIR)/*.la
-
