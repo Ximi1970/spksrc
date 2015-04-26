@@ -8,7 +8,9 @@ WORK_DIR := $(PWD)/work-native
 # Package dependend
 URLS          = $(PKG_DIST_SITE)/$(PKG_DIST_NAME)
 NAME          = native-$(PKG_NAME) 
+ifeq ($(COOKIE_PREFIX),)
 COOKIE_PREFIX = $(PKG_NAME)-
+endif
 DIST_FILE     = $(DISTRIB_DIR)/$(PKG_DIST_NAME)
 DIST_EXT      = $(PKG_EXT)
 
