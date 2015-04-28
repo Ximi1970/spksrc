@@ -28,15 +28,6 @@ PRE_DEPEND_TARGET = myPreDepend
 PRE_STRIP_TARGET = myPreStrip
 
 
-define \n
-
-
-endef
-ifneq ($(findstring $(ARCH),88f5281 armada370 armadaxp powerpc ppc824x ppc853x ppc854x qoriq ),)
-$(error ${\n}${\n}Architecture not supported.${\n}${\n})
-endif
-
-
 %-gcc47:
 	@echo "Recursive build. Exiting."
 	@exit 1
@@ -45,22 +36,34 @@ endif
 include ../../mk/spksrc.spk.mk
 
 
-ifneq ($(findstring $(ARCH), bromolow cedarview pineview x86),)
+define \n
+
+
+endef
+
+ALL_ARCHES = $(ARM_ARCHES) $(PPC_ARCHES) $(x86_ARCHES) $(x64_ARCHES)
+ifneq ($(findstring $(ARCH),$(x64_ARCHES)),)
 $(info Found $(ARCH))
-MAIN_MAKE_TOOLCHAIN_TARGET = x86_64-linux-gnu
-MAKE_TOOLCHAIN_TARGET = x86_64-linux-gnu
-endif
-ifneq ($(findstring $(ARCH), evansport),)
+MAIN_MAKE_TOOLCHAIN_TARGET = x86_64-pc-linux-gnu
+MAKE_TOOLCHAIN_TARGET = x86_64-pc-linux-gnu
+else
+ifneq ($(findstring $(ARCH),$(x86_ARCHES)),)
 $(info Found $(ARCH))
 MAIN_MAKE_TOOLCHAIN_TARGET = i686-pc-linux-gnu
 MAKE_TOOLCHAIN_TARGET = i686-pc-linux-gnu
-endif
+else
 ifneq ($(findstring $(ARCH), 88f6281),)
 $(info Found $(ARCH))
-MAIN_MAKE_TOOLCHAIN_TARGET = arm-unknown-linux-gnueabi
+MAIN_MAKE_TOOLCHAIN_TARGET = arm-marvell-linux-gnueabi
+else
+ifneq ($(findstring $(ARCH),$(ALL_ARCHES)),)
+$(error ${\n}${\n}Architecture $(ARCH) not supported.${\n}${\n})
 endif
-MAIN_MAKE_TOOLCHAIN_GCC_VER = $(GCC_VER)
+endif
+endif
+endif
 
+MAIN_MAKE_TOOLCHAIN_GCC_VER = $(GCC_VER)
 
 MAKE = make MAKE_TOOLCHAIN_TARGET=$(MAIN_MAKE_TOOLCHAIN_TARGET) MAKE_TOOLCHAIN_GCC_VER=$(MAIN_MAKE_TOOLCHAIN_GCC_VER) 
 
@@ -70,37 +73,25 @@ ifeq ($(DELETE_COOKIES),)
 endif
 
 clean-%:
-	@export CLEANUP=$@ ; \
-	export CLEANUP=$${CLEANUP:6} ; \
-	if 	[ "$$CLEANUP" == "bromolow" ] || \
-		[ "$$CLEANUP" == "cedarview" ] || \
-		[ "$$CLEANUP" == "pineview" ] || \
-		[ "$$CLEANUP" == "evansport" ] || \
-		[ "$$CLEANUP" == "x86" ] || \
-		[ "$$CLEANUP" == "88f6281" ] || \
-		[ "$$CLEANUP" == "88f5281" ] || \
-		[ "$$CLEANUP" == "armada370" ] || \
-		[ "$$CLEANUP" == "armadaxp" ] || \
-		[ "$$CLEANUP" == "powerpc" ] || \
-		[ "$$CLEANUP" == "ppc824x" ] || \
-		[ "$$CLEANUP" == "ppc853x" ] || \
-		[ "$$CLEANUP" == "ppc854x" ] || \
-		[ "$$CLEANUP" == "qoriq" ] ; then \
-		echo "Cleaning" $$CLEANUP-$(DEFAULT_TC) ; \
-		rm -rf work-$$CLEANUP-$(DEFAULT_TC) ; \
-		rm -rf ../../native/binutils/work-native/work-$$CLEANUP-$(DEFAULT_TC)-gcc$(GCC_VER) ; \
-		rm -f ../../native/binutils/work-native/.*$$CLEANUP-$(DEFAULT_TC)-gcc$(GCC_VER)*_done ; \
-		rm -rf ../../native/gcc$(GCC_VER)-bootstrap/work-native/work-$$CLEANUP-$(DEFAULT_TC) ; \
-		rm -f ../../native/gcc$(GCC_VER)-bootstrap/work-native/.*$$CLEANUP*_done ; \
-		rm -rf ../../native/gcc$(GCC_VER)/work-native/work-$$CLEANUP-$(DEFAULT_TC) ; \
-		rm -f ../../native/gcc$(GCC_VER)/work-native/.*$$CLEANUP*_done ; \
-		rm -rf ../../native/eglibc/work-native/work-$$CLEANUP-$(DEFAULT_TC)-gcc$(GCC_VER) ; \
-		rm -rf ../../native/eglibc/work-native/install-$$CLEANUP-$(DEFAULT_TC)-gcc$(GCC_VER) ; \
-		rm -f ../../native/eglibc/work-native/.*$$CLEANUP-$(DEFAULT_TC)-gcc$(GCC_VER)*_done ; \
-		rm -rf ../../native/glibc/work-native/work-$$CLEANUP-$(DEFAULT_TC)-gcc$(GCC_VER) ; \
-		rm -rf ../../native/glibc/work-native/install-$$CLEANUP-$(DEFAULT_TC)-gcc$(GCC_VER) ; \
-		rm -f ../../native/glibc/work-native/.*$$CLEANUP-$(DEFAULT_TC)-gcc$(GCC_VER)*_done ; \
-		rm -rf ../../toolchains/syno-$$CLEANUP-$(DEFAULT_TC)-gcc$(GCC_VER) ; \
+	@ARCHES="$(ALL_ARCHES)" ; \
+	if [ -z "$${ARCHES##*$**}" ] ; then \
+		echo "Cleaning" $*-$(DEFAULT_TC) ; \
+		rm -rf work-$*-$(DEFAULT_TC) ; \
+		rm -rf ../../native/binutils/work-native/work-$*_gcc$(GCC_VER)-$(DEFAULT_TC) ; \
+		rm -f ../../native/binutils/work-native/.*$*_gcc$(GCC_VER)-$(DEFAULT_TC)*_done ; \
+		rm -rf ../../native/gcc$(GCC_VER)-bootstrap/work-native/work-$*-$(DEFAULT_TC) ; \
+		rm -f ../../native/gcc$(GCC_VER)-bootstrap/work-native/.*$**_done ; \
+		rm -rf ../../native/gcc$(GCC_VER)/work-native/work-$*-$(DEFAULT_TC) ; \
+		rm -f ../../native/gcc$(GCC_VER)/work-native/.*$**_done ; \
+		rm -rf ../../native/eglibc/work-native/work-$*_gcc$(GCC_VER)-$(DEFAULT_TC) ; \
+		rm -rf ../../native/eglibc/work-native/install-$*_gcc$(GCC_VER)-$(DEFAULT_TC) ; \
+		rm -f ../../native/eglibc/work-native/.*$*_gcc$(GCC_VER)-$(DEFAULT_TC)*_done ; \
+		rm -rf ../../native/glibc/work-native/work-$*_gcc$(GCC_VER)-$(DEFAULT_TC) ; \
+		rm -rf ../../native/glibc/work-native/install-$*_gcc$(GCC_VER)-$(DEFAULT_TC) ; \
+		rm -f ../../native/glibc/work-native/.*$*_gcc$(GCC_VER)-$(DEFAULT_TC)*_done ; \
+		rm -rf ../../native/toolchain-gcc$(GCC_VER)/work-native/work-$*-$(DEFAULT_TC) ; \
+		rm -f ../../native/toolchain-gcc$(GCC_VER)/work-native/.*$**_done ; \
+		rm -rf ../../toolchains/syno-$*_gcc$(GCC_VER)-$(DEFAULT_TC) ; \
 	else \
 		echo "Unknown architecture" ; \
 	fi
@@ -114,7 +105,8 @@ clean-all-arch:
 	rm -rf ../../native/gcc$(GCC_VER)/work-native ; \
 	rm -rf ../../native/eglibc/work-native ; \
 	rm -rf ../../native/glibc/work-native ; \
-	rm -rf ../../toolchains/syno-*-$(DEFAULT_TC)-gcc$(GCC_VER)
+	rm -rf ../../native/toolchain-gcc$(GCC_VER)/work-native ; \
+	rm -rf ../../toolchains/syno-*_gcc$(GCC_VER)-$(DEFAULT_TC)
 
 .PHONY: myPreDepend
 myPreDepend:
@@ -132,11 +124,15 @@ myPreDepend:
 	echo "Architecture:" $(ARCH) ; \
 	echo "Target:" $(MAIN_MAKE_TOOLCHAIN_TARGET) ; \
 	echo "Gcc:" $(MAIN_MAKE_TOOLCHAIN_GCC_VER) ; \
-	if [ ! -d  ../../toolchains/syno-$(ARCH)-$(DEFAULT_TC)-gcc$(GCC_VER) ] ; then \
-		mkdir -p ../../toolchains/syno-$(ARCH)-$(DEFAULT_TC)-gcc$(GCC_VER) ; \
-		pushd ../../toolchains/syno-$(ARCH)-$(DEFAULT_TC)-gcc$(GCC_VER) ; \
+	if [ ! -d  ../../toolchains/syno-$(ARCH)_gcc$(GCC_VER)-$(DEFAULT_TC) ] ; then \
+		mkdir -p ../../toolchains/syno-$(ARCH)_gcc$(GCC_VER)-$(DEFAULT_TC) ; \
+		pushd ../../toolchains/syno-$(ARCH)_gcc$(GCC_VER)-$(DEFAULT_TC) ; \
 		rm -f Makefile ; \
-		echo "TC_NAME = syno-$(ARCH)-$(DEFAULT_TC)-gcc$(GCC_VER)" > Makefile ; \
+		echo "TC_NAME = syno-$(ARCH)_gcc$(GCC_VER)-$(DEFAULT_TC)" > Makefile ; \
+		echo >> Makefile ; \
+		echo "TC_ARCH = $(TC_ARCH)" >> Makefile ; \
+		echo "TC_VERS = $(DEFAULT_TC)" >> Makefile ; \
+		echo "TC_FIRMWARE = $(TC_FIRMWARE)" >> Makefile ; \
 		echo >> Makefile ; \
 		echo "TC_DIST_NAME = toolchain-gcc$(GCC_VER)-1.0.0.zip" >> Makefile ; \
 		echo >> Makefile ; \
@@ -158,4 +154,4 @@ myPreDepend:
 
 .PHONY: myPreStrip
 myPreStrip:
-	$(eval STRIP := ../../toolchains/syno-$(ARCH)-$(DEFAULT_TC)-gcc$(GCC_VER)/work/$(MAIN_MAKE_TOOLCHAIN_TARGET)/bin/$(MAIN_MAKE_TOOLCHAIN_TARGET)-strip)
+	$(eval STRIP := ../../toolchains/syno-$(ARCH)_gcc$(GCC_VER)-$(DEFAULT_TC)/work/$(MAIN_MAKE_TOOLCHAIN_TARGET)/bin/$(MAIN_MAKE_TOOLCHAIN_TARGET)-strip)
