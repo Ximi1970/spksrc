@@ -35,7 +35,7 @@ $(error This package is part of a toolchain. To use this packages, please run: s
 endif
 
 ifeq ($(MAKE_TOOLCHAIN_GCC_VER),47)
-TOOLCHAIN_PATH = $(WORK_DIR)/../../../toolchains/syno-$(ARCH)-$(DEFAULT_TC)-gcc$(MAKE_TOOLCHAIN_GCC_VER)/work/$(MAKE_TOOLCHAIN_TARGET)
+TOOLCHAIN_PATH = $(WORK_DIR)/../../../toolchains/syno-$(ARCH)_gcc$(MAKE_TOOLCHAIN_GCC_VER)-$(DEFAULT_TC)/work/$(MAKE_TOOLCHAIN_TARGET)
 else
 $(error This package is part of a toolchain. To use this packages, please run: spk/toolchain-gcc47 arch-<arch> )
 endif

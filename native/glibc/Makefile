@@ -41,7 +41,7 @@ $(error This package is part of a toolchain. Please start with the package: spk/
 endif
 
 ifneq ($(findstring $(MAKE_TOOLCHAIN_GCC_VER), 47 48 49),)
-TOOLCHAIN_PATH = $(WORK_DIR)/../../../toolchains/syno-$(ARCH)-$(DEFAULT_TC)-gcc$(MAKE_TOOLCHAIN_GCC_VER)/work/$(MAKE_TOOLCHAIN_TARGET)
+TOOLCHAIN_PATH = $(WORK_DIR)/../../../toolchains/syno-$(ARCH)_gcc$(MAKE_TOOLCHAIN_GCC_VER)-$(DEFAULT_TC)/work/$(MAKE_TOOLCHAIN_TARGET)
 else
 $(error This package is part of a toolchain. Please start with the package: spk/toolchain-gcc[47|48|49] arch-<arch> )
 endif
@@ -53,7 +53,7 @@ ARCH_LIBDIR=lib
 endif
 
 
-COOKIE_PREFIX=$(PKG_NAME)-$(ARCH)-$(DEFAULT_TC)-gcc$(MAKE_TOOLCHAIN_GCC_VER)-
+COOKIE_PREFIX=$(PKG_NAME)-$(ARCH)_gcc$(MAKE_TOOLCHAIN_GCC_VER)-$(DEFAULT_TC)-
 
 
 CONFIGURE_ARGS =  --prefix=$(INSTALL_PREFIX)/toolchain-gcc$(MAKE_TOOLCHAIN_GCC_VER)
@@ -81,10 +81,10 @@ myConfigure:
 		export BUILD_HOST=`echo ${MACHTYPE} | sed -e 's/-\([^-]*\)/-build_\1/'` ; \
 		export PATH=$(TOOLCHAIN_PATH)/bin:${PATH} ; \
 		cd .. ; \
-		mkdir -p work-$(ARCH)-$(DEFAULT_TC)-gcc$(MAKE_TOOLCHAIN_GCC_VER)/build ; \
-		if [ -f $(PKG_DIR)/configure ] ; then mv $(PKG_DIR) work-$(ARCH)-$(DEFAULT_TC)-gcc$(MAKE_TOOLCHAIN_GCC_VER) ; fi ; \
+		mkdir -p work-$(ARCH)_gcc$(MAKE_TOOLCHAIN_GCC_VER)-$(DEFAULT_TC)/build ; \
+		if [ -f $(PKG_DIR)/configure ] ; then mv $(PKG_DIR) work-$(ARCH)_gcc$(MAKE_TOOLCHAIN_GCC_VER)-$(DEFAULT_TC) ; fi ; \
 		mkdir -p $(PKG_DIR) ; \
-		cd work-$(ARCH)-$(DEFAULT_TC)-gcc$(MAKE_TOOLCHAIN_GCC_VER)/build ; \
+		cd work-$(ARCH)_gcc$(MAKE_TOOLCHAIN_GCC_VER)-$(DEFAULT_TC)/build ; \
 		BUILD_CC="gcc" CC="$(MAKE_TOOLCHAIN_TARGET)-gcc" \
 		AR="$(MAKE_TOOLCHAIN_TARGET)-ar" RANLIB="$(MAKE_TOOLCHAIN_TARGET)-ranlib" \
 		../$(PKG_DIR)/configure $(CONFIGURE_ARGS)
@@ -93,16 +93,16 @@ myConfigure:
 myCompile:
 	$(RUN) echo ; \
 		export PATH=$(TOOLCHAIN_PATH)/bin:${PATH} ; \
-		cd ../work-$(ARCH)-$(DEFAULT_TC)-gcc$(MAKE_TOOLCHAIN_GCC_VER)/build ; \
+		cd ../work-$(ARCH)_gcc$(MAKE_TOOLCHAIN_GCC_VER)-$(DEFAULT_TC)/build ; \
 		make $(MAKE_OPT)
 
 .PHONY: myInstall
 myInstall:
 	$(RUN) echo ; \
 		export PATH=$(TOOLCHAIN_PATH)/bin:${PATH} ; \
-		cd ../work-$(ARCH)-$(DEFAULT_TC)-gcc$(MAKE_TOOLCHAIN_GCC_VER)/build ; \
-		make install_root=$(INSTALL_DIR)-$(ARCH)-$(DEFAULT_TC)-gcc$(MAKE_TOOLCHAIN_GCC_VER) install ; \
-		cp -a $(INSTALL_DIR)-$(ARCH)-$(DEFAULT_TC)-gcc$(MAKE_TOOLCHAIN_GCC_VER)/$(INSTALL_PREFIX)/toolchain-gcc$(MAKE_TOOLCHAIN_GCC_VER)/* $(TOOLCHAIN_PATH)/$(MAKE_TOOLCHAIN_TARGET)/sys-root ; \
+		cd ../work-$(ARCH)_gcc$(MAKE_TOOLCHAIN_GCC_VER)-$(DEFAULT_TC)/build ; \
+		make install_root=$(INSTALL_DIR)-$(ARCH)_gcc$(MAKE_TOOLCHAIN_GCC_VER)-$(DEFAULT_TC) install ; \
+		cp -a $(INSTALL_DIR)-$(ARCH)_gcc$(MAKE_TOOLCHAIN_GCC_VER)-$(DEFAULT_TC)/$(INSTALL_PREFIX)/toolchain-gcc$(MAKE_TOOLCHAIN_GCC_VER)/* $(TOOLCHAIN_PATH)/$(MAKE_TOOLCHAIN_TARGET)/sys-root ; \
 		mkdir -p $(TOOLCHAIN_PATH)/$(MAKE_TOOLCHAIN_TARGET)/sys-root/usr/local ; \
 		pushd $(TOOLCHAIN_PATH)/$(MAKE_TOOLCHAIN_TARGET)/sys-root/usr/local ; \
 		if [ ! -d toolchain-gcc$(MAKE_TOOLCHAIN_GCC_VER) ] ; then ln -sf ../../../sys-root toolchain-gcc$(MAKE_TOOLCHAIN_GCC_VER) ; fi ; \

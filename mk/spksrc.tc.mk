@@ -4,6 +4,7 @@ SHELL := $(SHELL) -e
 default: all
 
 WORK_DIR := $(shell pwd)/work
+include ../../mk/spksrc.common.mk
 include ../../mk/spksrc.directories.mk
 
 
@@ -50,9 +51,35 @@ CXXFLAGS += $(TC_CXXFLAGS)
 CXXFLAGS += -I$(INSTALL_DIR)/$(INSTALL_PREFIX)/include
 
 LDFLAGS += $(TC_LDFLAGS)
-LDFLAGS += -L$(INSTALL_DIR)/$(INSTALL_PREFIX)/lib 
-LDFLAGS += -Wl,--rpath-link,$(INSTALL_DIR)/$(INSTALL_PREFIX)/lib 
+LDFLAGS += -L$(INSTALL_DIR)/$(INSTALL_PREFIX)/lib64
+LDFLAGS += -L$(INSTALL_DIR)/$(INSTALL_PREFIX)/lib
+LDFLAGS += -Wl,--rpath-link,$(INSTALL_DIR)/$(INSTALL_PREFIX)/lib64
+LDFLAGS += -Wl,--rpath-link,$(INSTALL_DIR)/$(INSTALL_PREFIX)/lib
+LDFLAGS += -Wl,--rpath,$(INSTALL_PREFIX)/lib64
 LDFLAGS += -Wl,--rpath,$(INSTALL_PREFIX)/lib
+
+ARCH_SPECIAL = $(subst .,,$(suffix $(subst _,.,$(ARCH))))
+ifeq ($(ARCH_SPECIAL),gcc47)
+ifneq ($(findstring $(TC_ARCH),$(x64_ARCHES)),)
+LDFLAGS += -Wl,--rpath,/usr/local/toolchain-gcc47/lib64 -Wl,--rpath,/usr/local/toolchain-gcc47/usr/lib64
+else
+LDFLAGS += -Wl,--rpath,/usr/local/toolchain-gcc47/lib -Wl,--rpath,/usr/local/toolchain-gcc47/usr/lib
+endif
+endif
+ifeq ($(ARCH_SPECIAL),gcc48)
+ifneq ($(findstring $(TC_ARCH),$(x64_ARCHES)),)
+LDFLAGS += -Wl,--rpath,/usr/local/toolchain-gcc48/lib64 -Wl,--rpath,/usr/local/toolchain-gcc48/usr/lib64
+else
+LDFLAGS += -Wl,--rpath,/usr/local/toolchain-gcc48/lib -Wl,--rpath,/usr/local/toolchain-gcc48/usr/lib
+endif
+endif
+ifeq ($(ARCH_SPECIAL),gcc49)
+ifneq ($(findstring $(TC_ARCH),$(x64_ARCHES)),)
+LDFLAGS += -Wl,--rpath,/usr/local/toolchain-gcc49/lib64 -Wl,--rpath,/usr/local/toolchain-gcc49/usr/lib64
+else
+LDFLAGS += -Wl,--rpath,/usr/local/toolchain-gcc49/lib -Wl,--rpath,/usr/local/toolchain-gcc49/usr/lib
+endif
+endif
 
 
 .PHONY: tc_vars
