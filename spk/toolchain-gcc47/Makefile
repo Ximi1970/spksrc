@@ -21,7 +21,7 @@ ADDITIONAL_SCRIPTS =
 
 INSTALL_PREFIX = /usr/local/$(SPK_NAME)
 
-ARCHITECTURES = bromolow cedarview pineview evansport x86 88f6281
+ARCHITECTURES = $(x64_ARCHES) $(x86_ARCHES) 88f6281
 
 
 PRE_DEPEND_TARGET = myPreDepend
