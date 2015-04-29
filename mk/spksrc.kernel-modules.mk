@@ -71,8 +71,7 @@ $(DIGESTS_FILE):
 	done
 
 kernel_install_header_target:
-	$(RUN) $(MAKE) ARCH=$(ARCH) headers_check
-	$(RUN) $(MAKE) ARCH=$(ARCH) INSTALL_HDR_PATH=$(WORK_DIR) headers_install
+	-$(RUN) $(MAKE) ARCH=$(ARCH) headers_check && $(MAKE) ARCH=$(ARCH) INSTALL_HDR_PATH=$(WORK_DIR) headers_install || echo -e "\n\nHeaders not available, skipping...\n\n"
 
 kernel_module_compile_target:
 	$(RUN) $(MAKE) $(MAKE_OPT) modules
