@@ -34,7 +34,11 @@ else
 $(error This package is part of a toolchain. Please start with the package: spk/toolchain-gcc47 arch-<arch> )
 endif
 
-ifneq ($(findstring $(ARCH), bromolow cedarview pineview x86),)
+
+include ../../mk/spksrc.common.mk
+
+
+ifneq ($(findstring $(ARCH),$(x64_ARCHES)),)
 ARCH_LIBDIR=lib64
 else
 ARCH_LIBDIR=lib
@@ -45,6 +49,7 @@ COOKIE_PREFIX=$(PKG_NAME)-$(ARCH)-
 
 
 include ../../mk/spksrc.native-cc.mk
+
 
 .PHONY: myPreDepend
 myPreDepend:

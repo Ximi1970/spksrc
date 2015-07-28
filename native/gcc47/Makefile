@@ -5,13 +5,7 @@ PKG_DIST_NAME = $(PKG_NAME)-$(PKG_VERS).$(PKG_EXT)
 PKG_DIST_SITE = ftp://ftp.gnu.org/pub/gnu/gcc/gcc-$(PKG_VERS)
 PKG_DIR = $(PKG_NAME)-$(PKG_VERS)
 
-#ifneq ($(findstring $(ARCH), bromolow cedarview x86 88f6281, powerpc),)
 DEPENDS = native/glibc
-#else ifneq ($(findstring $(ARCH), 88f6281),)
-#DEPENDS = native/eglibc
-#else
-#DEPENDS =
-#endif
 
 HOMEPAGE = http://gcc.gnu.org
 COMMENT  = The GNU Compiler Collection
