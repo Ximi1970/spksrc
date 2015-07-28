@@ -1,6 +1,6 @@
 SPK_NAME = bicbucstriim
-SPK_VERS = 1.2.4
-SPK_REV = 3
+SPK_VERS = 1.2.5
+SPK_REV = 4
 SPK_ICON = src/bicbucstriim.png
 DSM_UI_DIR = app
 
@@ -12,17 +12,17 @@ ADMIN_URL = /bbs/
 RELOAD_UI = yes
 STARTABLE = no
 DISPLAY_NAME = BicBucStriim
+CHANGELOG = Update to 1.2.5
 
 HOMEPAGE   = http://rvolz.github.com/BicBucStriim/
 LICENSE    = MIT
-
-WIZARDS_DIR = src/wizard/
 
 INSTALLER_SCRIPT = src/installer.sh
 SSS_SCRIPT       = src/dsm-control.sh
 
 INSTALL_DEP_SERVICES = apache-web
 START_DEP_SERVICES = apache-web
+INSTUNINST_RESTART_SERVICES = apache-web
 
 INSTALL_PREFIX = /usr/local/$(SPK_NAME)
 
