@@ -21,6 +21,22 @@ SPK_FILE_NAME = $(PACKAGES_DIR)/$(SPK_NAME)_$(SPK_NAME_ARCH)-$(SPK_TCVERS)_$(SPK
 
 #####
 
+# Check if package supports ARCH
+ifneq ($(UNSUPPORTED_ARCHS),)
+  ifneq (,$(findstring $(ARCH),$(UNSUPPORTED_ARCHS)))
+    @$(error Arch '$(ARCH)' is not a supported architecture )
+  endif
+endif
+
+# Check minimum DSM requirements of package
+ifneq ($(REQUIRED_DSM),)
+  ifneq ($(REQUIRED_DSM),$(firstword $(sort $(TCVERSION) $(REQUIRED_DSM))))
+    @$(error Toolchain $(TCVERSION) is lower than required version in Makefile $(REQUIRED_DSM) )
+  endif
+endif
+
+#####
+
 # Even though this makefile doesn't cross compile, we need this to setup the cross environment.
 include ../../mk/spksrc.cross-env.mk
 
@@ -119,14 +135,14 @@ endif
 ifneq ($(strip $(CONF_DIR)),)
 	@echo support_conf_folder=\"yes\" >> $@
 endif
-	@echo checksum=\"`md5sum $(WORK_DIR)/package.tgz | cut -d" " -f1)`\" >> $@
+	@echo checksum=\"`md5sum $(WORK_DIR)/package.tgz | cut -d" " -f1`\" >> $@
 ifneq ($(strip $(DEBUG)),)
 INSTALLER_OUTPUT = >> /root/$${PACKAGE}-$${SYNOPKG_PKG_STATUS}.log 2>&1
 else
 INSTALLER_OUTPUT = > $$SYNOPKG_TEMP_LOGFILE
 endif
 ifneq ($(strip $(SPK_CONFLICT)),)
-@echo install_conflict_packages=\"$(SPK_CONFLICT)\" >> $@
+	@echo install_conflict_packages=\"$(SPK_CONFLICT)\" >> $@
 endif
 
 # Wizard
@@ -225,8 +241,8 @@ $(DSM_SCRIPTS_DIR)/start-stop-status: $(SSS_SCRIPT)
 	@$(dsm_script_copy)
 $(DSM_SCRIPTS_DIR)/installer: $(INSTALLER_SCRIPT)
 	@$(dsm_script_copy)
-$(DSM_SCRIPTS_DIR)/%: $(filter %.sc,$(FWPORTS))
-	@$(dsm_script_copy)	
+$(DSM_SCRIPTS_DIR)/%.sc: $(filter %.sc,$(FWPORTS))
+	@$(dsm_script_copy)
 $(DSM_SCRIPTS_DIR)/%: $(filter %.sh,$(ADDITIONAL_SCRIPTS))
 	@$(dsm_script_copy)
 
@@ -235,7 +251,7 @@ SPK_CONTENT = package.tgz INFO PACKAGE_ICON.PNG PACKAGE_ICON_120.PNG scripts
 .PHONY: checksum
 checksum:
 	@$(MSG) "Creating checksum for $(SPK_NAME)"
-	@sed -i -e "s|checksum=\".*|checksum=\"`md5sum $(WORK_DIR)/package.tgz | cut -d" " -f1)`\"|g" $(WORK_DIR)/INFO
+	@sed -i -e "s|checksum=\".*|checksum=\"`md5sum $(WORK_DIR)/package.tgz | cut -d" " -f1`\"|g" $(WORK_DIR)/INFO
 
 .PHONY: wizards
 wizards:
@@ -265,16 +281,7 @@ $(SPK_FILE_NAME): $(WORK_DIR)/package.tgz $(WORK_DIR)/INFO checksum $(WORK_DIR)/
 	$(create_target_dir)
 	(cd $(WORK_DIR) && tar cpf $@ --group=root --owner=root $(SPK_CONTENT))
 
-# Compare optional Makefile REQUIRED_DSM to provided TCVERSION. If REQ_DSM is lower than TCVERSION, exit
-checkversion:
-ifneq ($(REQUIRED_DSM),)
-  ifneq ($(REQUIRED_DSM),$(firstword $(sort $(TCVERSION) $(REQUIRED_DSM))))
-	$(error Stop: Toolchain $(TCVERSION) is lower than required version in Makefile $(REQUIRED_DSM) )
-	@exit 1
-  endif
-endif
-
-package: checkversion $(SPK_FILE_NAME)
+package: $(SPK_FILE_NAME)
 
 ### Publish rules
 publish: package
@@ -293,10 +300,6 @@ clean:
 
 all: package
 
-
-SUPPORTED_TCS = $(notdir $(wildcard ../../toolchains/syno-*))
-SUPPORTED_ARCHS = $(notdir $(subst syno-,/,$(SUPPORTED_TCS)))
-
 dependency-tree:
 	@echo `perl -e 'print "\\\t" x $(MAKELEVEL),"\n"'`+ $(NAME)
 	@for depend in $(DEPENDS) ; \
@@ -305,33 +308,110 @@ dependency-tree:
 	done
 
 .PHONY: all-archs
-all-archs: $(addprefix arch-,$(SUPPORTED_ARCHS))
+all-archs: $(addprefix arch-,$(AVAILABLE_ARCHS))
 
 .PHONY: publish-all-archs
-publish-all-archs: $(addprefix publish-arch-,$(SUPPORTED_ARCHS))
+publish-all-archs: $(addprefix publish-arch-,$(AVAILABLE_ARCHS))
 
-all-toolchain-%: $(addprefix arch-,$(basename $(subst -,.,$(basename $(subst .,,$(filter %$*, $(SUPPORTED_ARCHS)))))))
-	@$(MSG) Built packages for toolchain $*
+####
 
-publish-all-toolchain-%: $(addprefix publish-arch-,$(basename $(subst -,.,$(basename $(subst .,,$(filter %$*, $(SUPPORTED_ARCHS)))))))
-	@$(MSG) Published packages for toolchain $*
-	
-all-archs-latest: $(addprefix latest-arch-,$(sort $(basename $(SUPPORTED_ARCHS))))
+all-supported:
+	@$(MSG) Build supported archs
+	@if $(MAKE) kernel-required >/dev/null 2>&1 ; then \
+	  for arch in $(sort $(basename $(subst -,.,$(basename $(subst .,,$(ARCHS_DUPES)))))) ; \
+	  do \
+	    $(MAKE) latest-arch-$$arch ; \
+	  done \
+	else \
+	  for arch in $(sort $(basename $(subst -,.,$(basename $(subst .,,$(ARCHS_NO_KRNLSUPP)))))) ; \
+	  do \
+	    $(MAKE) latest-arch-$$arch ; \
+	  done \
+	fi
+
+publish-all-supported:
+	@$(MSG) Publish supported archs
+	@if $(MAKE) kernel-required >/dev/null 2>&1 ; then \
+	  for arch in $(sort $(basename $(subst -,.,$(basename $(subst .,,$(ARCHS_DUPES)))))) ; \
+	  do \
+	    $(MAKE) publish-latest-arch-$$arch ; \
+	  done \
+	else \
+	  for arch in $(sort $(basename $(subst -,.,$(basename $(subst .,,$(ARCHS_NO_KRNLSUPP)))))) ; \
+	  do \
+	    $(MAKE) publish-latest-arch-$$arch ; \
+	  done \
+	fi
+
+all-legacy: $(addprefix arch-,$(LEGACY_ARCHS))
+	$(MAKE) all-toolchain-4.3
+	@$(MSG) Built legacy archs
+
+publish-all-legacy: $(addprefix publish-arch-,$(LEGACY_ARCHS))
+	$(MAKE) all-toolchain-4.3
+	@$(MSG) Published legacy archs
+
+####
+
+all-archs-latest:
+	@$(MSG) Build all archs with latest DSM per FIRMWARE
+	@if $(MAKE) kernel-required >/dev/null 2>&1 ; then \
+	  $(MSG) Skipping duplicate arches; \
+	  for arch in $(sort $(basename $(ARCHS_DUPES))) ; \
+	  do \
+	    $(MAKE) latest-arch-$$arch ; \
+	  done \
+	else \
+	  $(MSG) Skipping arches without kernelsupport ; \
+	  for arch in $(sort $(basename $(ARCHS_NO_KRNLSUPP))) ; \
+	  do \
+	    $(MAKE) latest-arch-$$arch ; \
+	  done \
+	fi
 
 publish-all-archs-latest:
-	@$(MSG) Build all archs with latest DSM per FIRMWARE
-	@for arch in $(sort $(basename $(SUPPORTED_ARCHS))) ; \
-	do \
-	  $(MAKE) publish-latest-arch-$$arch ; \
-	done
+	@$(MSG) Publish all archs with latest DSM per FIRMWARE
+	@if $(MAKE) kernel-required >/dev/null 2>&1 ; then \
+	  $(MSG) Skipping duplicate arches; \
+	  for arch in $(sort $(basename $(ARCHS_DUPES))) ; \
+	  do \
+	    $(MAKE) publish-latest-arch-$$arch ; \
+	  done \
+	else \
+	  $(MSG) Skipping arches without kernelsupport ; \
+	  for arch in $(sort $(basename $(ARCHS_NO_KRNLSUPP))) ; \
+	  do \
+	    $(MAKE) publish-latest-arch-$$arch ; \
+	  done \
+	fi
+
+####
 
 latest-arch-%:
 	@$(MSG) Building package for arch $* with latest available toolchain
-	-@MAKEFLAGS= $(MAKE) ARCH=$(basename $(subst -,.,$*)) TCVERSION=$(notdir $(subst -,/,$(sort $(filter %$(lastword $(notdir $(subst -,/,$(sort $(filter $*%, $(SUPPORTED_ARCHS)))))),$(sort $(filter $*%, $(SUPPORTED_ARCHS)))))))
+	-@MAKEFLAGS= $(MAKE) ARCH=$(basename $(subst -,.,$*)) TCVERSION=$(notdir $(subst -,/,$(sort $(filter %$(lastword $(notdir $(subst -,/,$(sort $(filter $*%, $(AVAILABLE_ARCHS)))))),$(sort $(filter $*%, $(AVAILABLE_ARCHS)))))))
 
 publish-latest-arch-%:
 	@$(MSG) Building package for arch $* with latest available toolchain
-	-@MAKEFLAGS= $(MAKE) ARCH=$(basename $(subst -,.,$*)) TCVERSION=$(notdir $(subst -,/,$(sort $(filter %$(lastword $(notdir $(subst -,/,$(sort $(filter $*%, $(SUPPORTED_ARCHS)))))),$(sort $(filter $*%, $(SUPPORTED_ARCHS))))))) publish
+	-@MAKEFLAGS= $(MAKE) ARCH=$(basename $(subst -,.,$*)) TCVERSION=$(notdir $(subst -,/,$(sort $(filter %$(lastword $(notdir $(subst -,/,$(sort $(filter $*%, $(AVAILABLE_ARCHS)))))),$(sort $(filter $*%, $(AVAILABLE_ARCHS))))))) publish
+
+####
+
+all-toolchain-%:
+	@$(MSG) Built packages for toolchain $*
+	for arch in $(sort $(basename $(subst -,.,$(basename $(subst .,,$(filter %$*, $(AVAILABLE_ARCHS))))))) ; \
+	do \
+	  $(MAKE) arch-$$arch-$* ; \
+	done \
+
+publish-all-toolchain-%:
+	@$(MSG) Built packages for toolchain $*
+	for arch in $(sort $(basename $(subst -,.,$(basename $(subst .,,$(filter %$*, $(AVAILABLE_ARCHS))))))) ; \
+	do \
+	  $(MAKE) publish-arch-$$arch-$* ; \
+	done \
+
+####
 
 arch-%:
 	@$(MSG) Building package for arch $*
@@ -341,5 +421,22 @@ publish-arch-%:
 	@$(MSG) Building and publishing package for arch $*
 	-@MAKEFLAGS= $(MAKE) ARCH=$(basename $(subst -,.,$(basename $(subst .,,$*)))) TCVERSION=$(if $(findstring $*,$(basename $(subst -,.,$(basename $(subst .,,$*))))),$(DEFAULT_TC),$(notdir $(subst -,/,$*))) publish
 
+####
+
 changelog:
 	@echo $(shell git log --pretty=format:"- %s" -- $(PWD))
+
+####
+
+.PHONY: kernel-required
+kernel-required:
+	@if [ -n "$(REQ_KERNEL)" ]; then \
+	  exit 1 ; \
+	fi
+	@for depend in $(DEPENDS) ; do \
+	  if $(MAKE) --no-print-directory -C ../../$$depend kernel-required >/dev/null 2>&1 ; then \
+	    exit 0 ; \
+	  else \
+	    exit 1 ; \
+	  fi ; \
+	done
