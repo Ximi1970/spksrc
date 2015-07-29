@@ -1,0 +1,11 @@
+diff -urN include.orig/uapi/linux/Kbuild include/uapi/linux/Kbuild
+--- include.orig/uapi/linux/Kbuild	2015-02-10 06:40:10.000000000 +0100
++++ include/uapi/linux/Kbuild	2015-07-29 14:53:55.897347719 +0200
+@@ -424,6 +424,7 @@
+ header-y += hw_breakpoint.h
+ header-y += synosata.h
+ header-y += syno.h
++header-y += syno_autoconf.h
+ header-y += syno_acl_xattr_ds.h
+ header-y += synotify.h
+ header-y += timerfd.h
