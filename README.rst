@@ -121,6 +121,11 @@ If you like spksrc and packages made out of it, please consider making a donatio
   .. image:: http://api.flattr.com/button/flattr-badge-large.png
     :target: http://flattr.com/thing/1106801/
 
+* Ximi1970
+
+  .. image:: https://www.paypal.com/en_US/i/btn/btn_donate_LG.gif
+    :target: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=93M5JMB4KEZE2
+
 Bugs
 ----
 If you find a bug please report it in the `bug tracker`_ if it has not already been reported. Be sure to provide as much information as possible.
