@@ -45,7 +45,7 @@ ARCH_LIBDIR=lib
 endif
 
 
-COOKIE_PREFIX=$(PKG_NAME)-$(ARCH)-
+COOKIE_PREFIX=$(PKG_NAME)-$(ARCH)-$(DEFAULT_TC)-
 
 
 include ../../mk/spksrc.native-cc.mk
