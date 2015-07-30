@@ -45,13 +45,13 @@ Compiling the toolchain will take a LONG time. (core i7-2630QM 2Ghz, 20 minutes)
 What is generated and what can we do now?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* You now have a new toolchain in the spksrc/toolchains directory called "syno-cedarview-gcc47".
+* You now have a new toolchain in the spksrc/toolchains directory called "syno-cedarview_gcc47-5.x".
 * You can use this new toolchain to compile a package by using::
 
     cd spksrc/spk/helloworld
-    make arch-cedarview-gcc47
+    make arch-cedarview_gcc47
 
-* Packages build with the new toolchain will get the extension "<package_name>_cederview-gcc47_<version>.spk".
+* Packages build with the new toolchain will get the extension "<package_name>_cederview_gcc47_<version>.spk".
 * There is a "toolchain-gcc47_cedarview_4.7.4" package in the spksrc/packages directory. You will need
   to install this package on your synology if you want to run the packages compiled with the new toolchain.
 
