@@ -1,10 +1,10 @@
-PKG_NAME = toolchain-gcc47
+PKG_NAME = toolchain-gcc48
 PKG_VERS = 1.0.1
 PKG_EXT = zip
 PKG_DIST_NAME = $(PKG_NAME)-$(PKG_VERS).$(PKG_EXT)
 PKG_DIST_SITE = https://github.com/Ximi1970/spksrc-toolchain/archive
 
-DEPENDS = native/gcc47
+DEPENDS = native/gcc48
 
 HOMEPAGE = https://github.com/SynoCommunity/spksrc
 COMMENT  = Toolchain is a container for a collection of GNU programming tools.
@@ -25,13 +25,13 @@ INSTALL_TARGET = myInstall
 
 
 ifeq ($(MAKE_TOOLCHAIN_TARGET),)
-$(error This package is part of a toolchain. Please start with the package: spk/toolchain-gcc47 arch-<arch> )
+$(error This package is part of a toolchain. Please start with the package: spk/toolchain-gcc48 arch-<arch> )
 endif
 
-ifeq ($(MAKE_TOOLCHAIN_GCC_VER),47)
+ifeq ($(MAKE_TOOLCHAIN_GCC_VER),48)
 TOOLCHAIN_PATH = $(WORK_DIR)/../../../toolchains/syno-$(ARCH)_gcc$(MAKE_TOOLCHAIN_GCC_VER)-$(DEFAULT_TC)/work/$(MAKE_TOOLCHAIN_TARGET)
 else
-$(error This package is part of a toolchain. Please start with the package: spk/toolchain-gcc47 arch-<arch> )
+$(error This package is part of a toolchain. Please start with the package: spk/toolchain-gcc48 arch-<arch> )
 endif
 
 

@@ -1,4 +1,4 @@
-PKG_NAME = toolchain-gcc47
+PKG_NAME = toolchain-gcc49
 PKG_VERS = 1.0.1
 PKG_EXT = zip
 PKG_DIST_NAME = $(PKG_NAME)-$(PKG_VERS).$(PKG_EXT)
@@ -17,13 +17,13 @@ INSTALL_TARGET = myInstall
 
 
 ifeq ($(MAKE_TOOLCHAIN_TARGET),)
-$(error This package is part of a toolchain. Please start with the package: spk/toolchain-gcc47 arch-<arch> )
+$(error This package is part of a toolchain. Please start with the package: spk/toolchain-gcc49 arch-<arch> )
 endif
 
-ifeq ($(MAKE_TOOLCHAIN_GCC_VER),47)
+ifeq ($(MAKE_TOOLCHAIN_GCC_VER),49)
 TOOLCHAIN_PATH = $(WORK_DIR)/../../../toolchains/syno-$(ARCH)_gcc$(MAKE_TOOLCHAIN_GCC_VER)-$(DEFAULT_TC)/work/$(MAKE_TOOLCHAIN_TARGET)
 else
-$(error This package is part of a toolchain. Please start with the package: spk/toolchain-gcc47 arch-<arch> )
+$(error This package is part of a toolchain. Please start with the package: spk/toolchain-gcc49 arch-<arch> )
 endif
 
 
