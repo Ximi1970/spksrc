@@ -1,0 +1,25 @@
+diff -urN arch.orig/x86/syscalls/syscallhdr.sh arch/x86/syscalls/syscallhdr.sh
+--- arch.orig/x86/syscalls/syscallhdr.sh	2015-05-04 13:07:18.000000000 +0200
++++ arch/x86/syscalls/syscallhdr.sh	2015-07-31 10:16:28.505029094 +0200
+@@ -11,7 +11,6 @@
+ cat << SYNO_SYSTEM_CALLS
+ 
+ #ifndef __KERNEL__
+-#include <bits/wordsize.h>
+ 
+ #define SYNOUtime(arg1, arg2)				syscall(__NR_SYNOUtime, arg1, arg2)
+ 
+@@ -33,11 +32,11 @@
+ 
+ #define SYNOFlushAggregate(arg1)			syscall(__NR_SYNOFlushAggregate, arg1)
+ 
+-#if (__WORDSIZE == 64) || (_FILE_OFFSET_BITS == 64)
++#if (_FILE_OFFSET_BITS == 64)
+ #define SYNOStat(arg1, arg2, arg3)				syscall(__NR_SYNOStat, arg1, arg2, arg3)
+ #define SYNOFStat(arg1, arg2, arg3)				syscall(__NR_SYNOFStat, arg1, arg2, arg3)
+ #define SYNOLStat(arg1, arg2, arg3)				syscall(__NR_SYNOLStat, arg1, arg2, arg3)
+-#endif /* (__WORDSIZE == 64) || (_FILE_OFFSET_BITS == 64) */
++#endif /* (_FILE_OFFSET_BITS == 64) */
+ 
+ #define SYNONotifyInit(arg1)				syscall(__NR_SYNONotifyInit, arg1)
+ #define SYNONotifyAddWatch(arg1, arg2, arg3)		syscall(__NR_SYNONotifyAddWatch, arg1, arg2, arg3)
