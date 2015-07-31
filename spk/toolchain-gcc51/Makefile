@@ -52,7 +52,7 @@ $(info Found $(ARCH))
 MAIN_MAKE_TOOLCHAIN_TARGET = i686-pc-linux-gnu
 MAKE_TOOLCHAIN_TARGET = i686-pc-linux-gnu
 else
-ifneq ($(findstring $(ARCH), 88f6281),)
+ifneq ($(findstring $(ARCH), 88f6281 armada370 armada375 armadaxp),)
 $(info Found $(ARCH))
 MAIN_MAKE_TOOLCHAIN_TARGET = arm-marvell-linux-gnueabi
 else
