@@ -80,6 +80,20 @@ else
 LDFLAGS += -Wl,--rpath,/usr/local/toolchain-gcc49/lib -Wl,--rpath,/usr/local/toolchain-gcc49/usr/lib
 endif
 endif
+ifeq ($(ARCH_SPECIAL),gcc51)
+ifneq ($(findstring $(TC_ARCH),$(x64_ARCHES)),)
+LDFLAGS += -Wl,--rpath,/usr/local/toolchain-gcc51/lib64 -Wl,--rpath,/usr/local/toolchain-gcc51/usr/lib64
+else
+LDFLAGS += -Wl,--rpath,/usr/local/toolchain-gcc51/lib -Wl,--rpath,/usr/local/toolchain-gcc51/usr/lib
+endif
+endif
+ifeq ($(ARCH_SPECIAL),gcc52)
+ifneq ($(findstring $(TC_ARCH),$(x64_ARCHES)),)
+LDFLAGS += -Wl,--rpath,/usr/local/toolchain-gcc52/lib64 -Wl,--rpath,/usr/local/toolchain-gcc52/usr/lib64
+else
+LDFLAGS += -Wl,--rpath,/usr/local/toolchain-gcc52/lib -Wl,--rpath,/usr/local/toolchain-gcc52/usr/lib
+endif
+endif
 
 
 .PHONY: tc_vars

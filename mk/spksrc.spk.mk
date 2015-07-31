@@ -5,7 +5,6 @@ include ../../mk/spksrc.directories.mk
 # Configure the included makefiles
 NAME = $(SPK_NAME)
 
-
 ifneq ($(ARCH),)
 SPK_ARCH = $(TC_ARCH)
 SPK_NAME_ARCH = $(ARCH)
@@ -21,6 +20,12 @@ SPK_DEPENDS += ":toolchain-gcc48>4.8.0-1"
 endif
 ifeq ($(strip $(ARCH_SPECIAL)),gcc49)
 SPK_DEPENDS += ":toolchain-gcc49>4.9.0-1"
+endif
+ifeq ($(strip $(ARCH_SPECIAL)),gcc51)
+SPK_DEPENDS += ":toolchain-gcc51>5.1.0-0"
+endif
+ifeq ($(strip $(ARCH_SPECIAL)),gcc52)
+SPK_DEPENDS += ":toolchain-gcc52>5.2.0-0"
 endif
 else
 SPK_ARCH = noarch
