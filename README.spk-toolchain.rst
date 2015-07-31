@@ -1,26 +1,28 @@
 How to use the spk toolchain-gccxx package
 ==========================================
 
-Toolchain-gccxx is a package which creates a new toolchain for a synology architecture.
-(replace the xx with 47, 48, 49, 51 or 52)
-
-Currently only these architecture are enabled:
-
-avoton, bromolow, cedarview, evansport, x64, x86 and 88f6281
+Toolchain-gccxx packages create new toolchains for most of the synology architectures.
 
 
 Status of the toolchains::
 
 	architecture    ( toolchains:    	binutils    gcc    glibc )  binaries    helloworld
 			47 48 49 51 52
-	avoton	        x			   ok       ok       ok        ok       (cannot test)
+			
+	avoton	        x                          ok       ok       ok        ok       (cannot test)
 	bromolow        x                          ok       ok       ok        ok       (cannot test)
-	cedarview       x       	           ok       ok       ok        ok       ok
+	cedarview       x  x  x                    ok       ok       ok        ok       ok
 	evansport       x                          ok       ok       ok        ok       (cannot test)
 	x64             x                          ok       ok       ok        ok       (cannot test)
 	x86             x                          ok       ok       ok        ok       (cannot test)
-	88f6281         x                          ok       ok       ok        ok       ok
-
+	88f6281         x  x  x                    ok       ok       ok        ok       ok
+	armada370       x                          ok       ok       ok        ok       (cannot test)
+	armada375       x                          ok       ok       ok        ok       (cannot test)
+	armadaxp        x                          ok       ok       ok        ok       (cannot test)
+	alpine		-  -  -  -  -
+	comcerto2k	-  -  -  -  -
+	ppc853x		-  -  -  -  -
+	qoriq		-  -  -  -  -
 
 
 Generating the toolchain
