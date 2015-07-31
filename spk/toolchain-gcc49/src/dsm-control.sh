@@ -2,7 +2,7 @@
 
 # Package
 PACKAGE="toolchain-gcc49"
-DNAME="Gcc 4.9 / Glibc 2.19 toolchain"
+DNAME="Gcc 4.9 toolchain"
 
 # Others
 INSTALL_DIR="/usr/local/${PACKAGE}"

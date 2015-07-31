@@ -13,6 +13,14 @@ DEPENDS = native/binutils native/gcc48-bootstrap
 else
 ifeq ($(MAKE_TOOLCHAIN_GCC_VER),49)
 DEPENDS = native/binutils native/gcc49-bootstrap
+else
+ifeq ($(MAKE_TOOLCHAIN_GCC_VER),51)
+DEPENDS = native/binutils native/gcc51-bootstrap
+else
+ifeq ($(MAKE_TOOLCHAIN_GCC_VER),52)
+DEPENDS = native/binutils native/gcc52-bootstrap
+endif
+endif
 endif
 endif
 endif
@@ -40,7 +48,7 @@ ifeq ($(MAKE_TOOLCHAIN_TARGET),)
 $(error This package is part of a toolchain. Please start with the package: spk/toolchain-gcc[47|48|49] arch-<arch> )
 endif
 
-ifneq ($(findstring $(MAKE_TOOLCHAIN_GCC_VER), 47 48 49),)
+ifneq ($(findstring $(MAKE_TOOLCHAIN_GCC_VER), 47 48 49 51 52),)
 TOOLCHAIN_PATH = $(WORK_DIR)/../../../toolchains/syno-$(ARCH)_gcc$(MAKE_TOOLCHAIN_GCC_VER)-$(DEFAULT_TC)/work/$(MAKE_TOOLCHAIN_TARGET)
 else
 $(error This package is part of a toolchain. Please start with the package: spk/toolchain-gcc[47|48|49] arch-<arch> )

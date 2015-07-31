@@ -7,9 +7,9 @@ SPK_ICON = src/toolchain.png
 DEPENDS = cross/$(SPK_NAME)
 
 MAINTAINER = SynoCommunity \(Ximi1970\)
-DESCRIPTION = Gcc 4.8 / Glibc 2.19 toolchain.
+DESCRIPTION = Gcc 4.8 toolchain.
 RELOAD_UI = no
-DISPLAY_NAME = Gcc 4.8 / Glibc 2.19 toolchain. 
+DISPLAY_NAME = Gcc 4.8 toolchain. 
 STARTABLE = no
 
 HOMEPAGE   = https://github.com/SynoCommunity/spksrc
@@ -56,13 +56,8 @@ ifneq ($(findstring $(ARCH), 88f6281),)
 $(info Found $(ARCH))
 MAIN_MAKE_TOOLCHAIN_TARGET = arm-marvell-linux-gnueabi
 else
-ifneq ($(findstring $(ARCH), qoriq),)
-$(info Found $(ARCH))
-MAIN_MAKE_TOOLCHAIN_TARGET = powerpc-none-linux-gnuspe
-else
 ifneq ($(findstring $(ARCH),$(ALL_ARCHES)),)
 $(error ${\n}${\n}Architecture $(ARCH) not supported.${\n}${\n})
-endif
 endif
 endif
 endif

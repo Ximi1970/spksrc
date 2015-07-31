@@ -1,15 +1,15 @@
-GCC_VER = 49
+GCC_VER = 51
 SPK_NAME = toolchain-gcc$(GCC_VER)
-SPK_VERS = 4.9.3
+SPK_VERS = 5.1.0
 SPK_REV = 1
 SPK_ICON = src/toolchain.png
 
 DEPENDS = cross/$(SPK_NAME)
 
 MAINTAINER = SynoCommunity \(Ximi1970\)
-DESCRIPTION = Gcc 4.9 toolchain.
+DESCRIPTION = Gcc 5.1 toolchain.
 RELOAD_UI = no
-DISPLAY_NAME = Gcc 4.9 toolchain. 
+DISPLAY_NAME = Gcc 5.1 toolchain. 
 STARTABLE = no
 
 HOMEPAGE   = https://github.com/SynoCommunity/spksrc
@@ -28,7 +28,7 @@ PRE_DEPEND_TARGET = myPreDepend
 PRE_STRIP_TARGET = myPreStrip
 
 
-%-gcc49:
+%-gcc51:
 	@echo "Recursive build. Exiting."
 	@exit 1
 

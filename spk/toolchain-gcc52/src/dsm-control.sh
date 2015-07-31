@@ -1,8 +1,8 @@
 #!/bin/sh
 
 # Package
-PACKAGE="toolchain-gcc47"
-DNAME="Gcc 4.7 toolchain"
+PACKAGE="toolchain-gcc52"
+DNAME="Gcc 5.2 toolchain"
 
 # Others
 INSTALL_DIR="/usr/local/${PACKAGE}"
