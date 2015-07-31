@@ -45,13 +45,13 @@ INSTALL_TARGET = myInstall
 
 
 ifeq ($(MAKE_TOOLCHAIN_TARGET),)
-$(error This package is part of a toolchain. Please start with the package: spk/toolchain-gcc[47|48|49] arch-<arch> )
+$(error This package is part of a toolchain. Please start with the package: spk/toolchain-gcc[47|48|49|51|52] arch-<arch> )
 endif
 
 ifneq ($(findstring $(MAKE_TOOLCHAIN_GCC_VER), 47 48 49 51 52),)
 TOOLCHAIN_PATH = $(WORK_DIR)/../../../toolchains/syno-$(ARCH)_gcc$(MAKE_TOOLCHAIN_GCC_VER)-$(DEFAULT_TC)/work/$(MAKE_TOOLCHAIN_TARGET)
 else
-$(error This package is part of a toolchain. Please start with the package: spk/toolchain-gcc[47|48|49] arch-<arch> )
+$(error This package is part of a toolchain. Please start with the package: spk/toolchain-gcc[47|48|49|51|52] arch-<arch> )
 endif
 
 
