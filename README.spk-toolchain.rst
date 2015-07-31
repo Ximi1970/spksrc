@@ -1,7 +1,8 @@
 How to use the spk toolchain-gccxx package
 ==========================================
 
-The toolchain-gccxx packages create new toolchain for most of the synology architectures.
+
+The toolchain-gccxx package creates a new toolchain for a synology architecture.
 
 
 Status of the toolchains::
