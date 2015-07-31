@@ -1,14 +1,14 @@
 How to use the spk toolchain-gccxx package
 ==========================================
 
-Toolchain-gccxx packages create new toolchains for most of the synology architectures.
+The toolchain-gccxx package creates a new toolchain for a synology architecture.
 
 
 Status of the toolchains::
 
 	architecture    ( toolchains:    	binutils    gcc    glibc )  binaries    helloworld
 			47 48 49 51 52
-			
+	
 	avoton	        x                          ok       ok       ok        ok       (cannot test)
 	bromolow        x                          ok       ok       ok        ok       (cannot test)
 	cedarview       x  x  x                    ok       ok       ok        ok       ok
