@@ -56,8 +56,18 @@ ifneq ($(findstring $(ARCH), 88f6281 armada370 armada375 armadaxp),)
 $(info Found $(ARCH))
 MAIN_MAKE_TOOLCHAIN_TARGET = arm-marvell-linux-gnueabi
 else
+ifneq ($(findstring $(ARCH), alpine),)
+$(info Found $(ARCH))
+MAIN_MAKE_TOOLCHAIN_TARGET = arm-linux-gnueabihf
+else
+ifneq ($(findstring $(ARCH), comcerto2k),)
+$(info Found $(ARCH))
+MAIN_MAKE_TOOLCHAIN_TARGET = arm-cortexa9-linux-gnueabi
+else
 ifneq ($(findstring $(ARCH),$(ALL_ARCHES)),)
 $(error ${\n}${\n}Architecture $(ARCH) not supported.${\n}${\n})
+endif
+endif
 endif
 endif
 endif
