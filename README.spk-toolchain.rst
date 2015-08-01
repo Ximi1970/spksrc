@@ -12,7 +12,7 @@ Status of the toolchains::
 	
 	avoton	        x  x                       ok       ok       ok        ok       (cannot test)
 	bromolow        x                          ok       ok       ok        ok       (cannot test)
-	cedarview       x  x  x  -  x              ok       ok       ok        ok       ok
+	cedarview       x  x  x  -                 ok       ok       ok        ok       ok
 	evansport       x  x                       ok       ok       ok        ok       (cannot test)
 	x64             x                          ok       ok       ok        ok       (cannot test)
 	x86             x                          ok       ok       ok        ok       (cannot test)
