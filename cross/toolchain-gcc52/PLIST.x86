@@ -383,8 +383,8 @@ lib:usr/lib64/libstdc++.a
 rsc:usr/lib64/libstdc++.la
 lnk:usr/lib64/libstdc++.so
 lnk:usr/lib64/libstdc++.so.6
-lib:usr/lib64/libstdc++.so.6.0.20
-rsc:usr/lib64/libstdc++.so.6.0.20-gdb.py
+lib:usr/lib64/libstdc++.so.6.0.21
+rsc:usr/lib64/libstdc++.so.6.0.21-gdb.py
 lib:usr/lib64/libsupc++.a
 rsc:usr/lib64/libsupc++.la
 lnk:usr/lib64/libthread_db.so
