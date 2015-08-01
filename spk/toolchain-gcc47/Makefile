@@ -149,7 +149,7 @@ myPreDepend:
 		echo "TC_VERS = $(DEFAULT_TC)" >> Makefile ; \
 		echo "TC_FIRMWARE = $(TC_FIRMWARE)" >> Makefile ; \
 		echo >> Makefile ; \
-		echo "TC_DIST_NAME = toolchain-gcc$(GCC_VER)-1.0.0.zip" >> Makefile ; \
+		echo "TC_DIST_NAME = toolchain-gcc$(GCC_VER)-1.0.1.zip" >> Makefile ; \
 		echo >> Makefile ; \
 		echo "TC_EXT = zip" >> Makefile ; \
 		echo "TC_DIST_SITE = https://github.com/Ximi1970/spksrc-toolchain/archive" >> Makefile ; \
