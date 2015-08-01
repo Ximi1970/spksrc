@@ -7,39 +7,60 @@ The toolchain-gccxx package creates a new toolchain for a synology architecture.
 
 Status of the toolchains for DSM 4.3::
 
-	architecture    ( toolchains:    	binutils    gcc    glibc )  binaries
+	architecture    ( toolchains:    	kernel  binutils  gcc  glibc )  binaries
 			47 48 49 51 52
 	
 	bromolow	
 	cedarview	
 	evansport	
 	x86		
-	88f6281		
-	armada370	
-	armadaxp	
-	ppc853x		
-	qoriq		
+	88f6281 (sf)	
+	armada370 (hf)	
+	armadaxp (hf)	
+	ppc853x (hf)	
+	qoriq (hf)	
+
+
+Status of the toolchains for DSM 5.1::
+
+	architecture    ( toolchains:    	kernel  binutils  gcc  glibc )  binaries
+			47 48 49 51 52
+	
+	avoton		                          
+	bromolow	                          
+	cedarview	                          
+	evansport	                          
+	x64		                          
+	x86		                          
+	88f6281 (sf)	                          
+	armada370 (hf)	                          
+	armada375 (hf)	                          
+	armadaxp (hf)	                          
+	alpine (hf)	            X             ok      ok      ok    ok         ok
+	comcerto2k (hf)	                          
+	ppc853x (hf)	                          
+	qoriq (hf)	                          
 
 
 Status of the toolchains for DSM 5.2::
 
-	architecture    ( toolchains:    	binutils    gcc    glibc )  binaries    helloworld
+	architecture    ( toolchains:    	kernel  binutils  gcc  glibc )  binaries  helloworld
 			47 48 49 51 52
 	
-	avoton		            X              ok       ok       ok        ok       (cannot test)
-	bromolow	            X              ok       ok       ok        ok       (cannot test)
-	cedarview	            x              ok       ok       ok        ok       ok
-	evansport	            x              ok       ok       ok        ok       (cannot test)
-	x64		            X              ok       ok       ok        ok       (cannot test)
-	x86		            X              ok       ok       ok        ok       (cannot test)
-	88f6281 (sf)	            X              ok       ok       ok        ok       ok
-	armada370 (sf)	            X              ok       ok       ok        ok       (cannot test)
-	armada375 (sf)	            X              ok       ok       ok        ok       (cannot test)
-	armadaxp (sf)	            X              ok       ok       ok        ok       (cannot test)
-	alpine		            -              --       --       --        --       (cannot test)
-	comcerto2k (hf)	            X              ok       ok       ok        ok       (cannot test)
-	ppc853x		            -              ok       --       --        --       (cannot test)
-	qoriq		            -              ok       --       --        --       (cannot test)
+	avoton		            X             ok      ok      ok    ok         ok     (cannot test)
+	bromolow	            X             ok      ok      ok    ok         ok     (cannot test)
+	cedarview	            x             ok      ok      ok    ok         ok     ok
+	evansport	            x             ok      ok      ok    ok         ok     (cannot test)
+	x64		            X             ok      ok      ok    ok         ok     (cannot test)
+	x86		            X             ok      ok      ok    ok         ok     (cannot test)
+	88f6281 (sf)	            X             ok      ok      ok    ok         ok     ok
+	armada370 (hf)	            X             ok      ok      ok    ok         ok     (cannot test)
+	armada375 (hf)	            X             ok      ok      ok    ok         ok     (cannot test)
+	armadaxp (hf)	            X             ok      ok      ok    ok         ok     (cannot test)
+	alpine (hf)	            X             ok      ok      ok    ok         ok     (cannot test)
+	comcerto2k (hf)	            X             ok      ok      ok    ok         ok     (cannot test)
+	ppc853x (hf)	            -             --      --      --    --         --     (cannot test)
+	qoriq (hf)	            -             --      --      --    --         --     (cannot test)
 
 (sf)	Softfloat
 (hf)	Hardfloat
