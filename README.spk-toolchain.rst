@@ -10,10 +10,10 @@ Status of the toolchains::
 	architecture    ( toolchains:    	binutils    gcc    glibc )  binaries    helloworld
 			47 48 49 51 52
 	
-	avoton	        x                          ok       ok       ok        ok       (cannot test)
+	avoton	        x  x                       ok       ok       ok        ok       (cannot test)
 	bromolow        x                          ok       ok       ok        ok       (cannot test)
-	cedarview       x  x  x  -  x              ok       ok       ok        ok       ok
-	evansport       x                          ok       ok       ok        ok       (cannot test)
+	cedarview       x  x  x  -                 ok       ok       ok        ok       ok
+	evansport       x  x                       ok       ok       ok        ok       (cannot test)
 	x64             x                          ok       ok       ok        ok       (cannot test)
 	x86             x                          ok       ok       ok        ok       (cannot test)
 	88f6281         x  x  x                    ok       ok       ok        ok       ok
@@ -21,7 +21,7 @@ Status of the toolchains::
 	armada375       x                          ok       ok       ok        ok       (cannot test)
 	armadaxp        x                          ok       ok       ok        ok       (cannot test)
 	alpine		x                          ok       ok       ok        ok       (cannot test)
-	comcerto2k	x                          ok       ok       ok        ok       (cannot test)
+	comcerto2k	x     x                    ok       ok       ok        ok       (cannot test)
 	ppc853x		-  -  -  -  -
 	qoriq		-  -  -  -  -
 
