@@ -26,18 +26,18 @@ Status of the toolchains for DSM 5.1::
 	architecture    ( toolchains:    	kernel  binutils  gcc  glibc )  binaries
 			47 48 49 51 52
 	
-	avoton		                          
+	avoton		            X             ok      ok      ok    ok         ok
 	bromolow	                          
-	cedarview	                          
+	cedarview	            X             ok      ok      ok    ok         ok
 	evansport	                          
 	x64		                          
 	x86		                          
 	88f6281 (sf)	                          
 	armada370 (hf)	                          
 	armada375 (hf)	                          
-	armadaxp (hf)	                          
+	armadaxp (hf)	            X             ok      ok      ok    ok         ok
 	alpine (hf)	            X             ok      ok      ok    ok         ok
-	comcerto2k (hf)	                          
+	comcerto2k (hf)	            X             ok      ok      ok    ok         ok
 	ppc853x (hf)	                          
 	qoriq (hf)	                          
 
