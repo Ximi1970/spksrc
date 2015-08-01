@@ -10,15 +10,15 @@ Status of the toolchains for DSM 4.3::
 	architecture    ( toolchains:    	binutils    gcc    glibc )  binaries
 			47 48 49 51 52
 	
-	bromolow	                           ok       ok       ok        ok
-	cedarview	                           ok       ok       ok        ok
-	evansport	                           ok       ok       ok        ok
-	x86		                           ok       ok       ok        ok
-	88f6281		                           ok       ok       ok        ok
-	armada370	                           ok       ok       ok        ok
-	armadaxp	                           ok       ok       ok        ok
-	ppc853x		-  -  -  -  -              ok       --       --        --
-	qoriq		-  -  -  -  -              ok       --       --        --
+	bromolow	
+	cedarview	
+	evansport	
+	x86		
+	88f6281		
+	armada370	
+	armadaxp	
+	ppc853x		
+	qoriq		
 
 
 Status of the toolchains for DSM 5.2::
@@ -32,14 +32,17 @@ Status of the toolchains for DSM 5.2::
 	evansport	            x              ok       ok       ok        ok       (cannot test)
 	x64		            X              ok       ok       ok        ok       (cannot test)
 	x86		            X              ok       ok       ok        ok       (cannot test)
-	88f6281		            X              ok       ok       ok        ok       ok
-	armada370	            X              ok       ok       ok        ok       (cannot test)
-	armada375	                           ok       ok       ok        ok       (cannot test)
-	armadaxp	                           ok       ok       ok        ok       (cannot test)
-	alpine		                           ok       ok       ok        ok       (cannot test)
-	comcerto2k	                           ok       ok       ok        ok       (cannot test)
-	ppc853x		-  -  -  -  -              ok       --       --        --       (cannot test)
-	qoriq		-  -  -  -  -              ok       --       --        --       (cannot test)
+	88f6281 (sf)	            X              ok       ok       ok        ok       ok
+	armada370 (sf)	            X              ok       ok       ok        ok       (cannot test)
+	armada375 (sf)	            X              ok       ok       ok        ok       (cannot test)
+	armadaxp (sf)	            X              ok       ok       ok        ok       (cannot test)
+	alpine		            -              --       --       --        --       (cannot test)
+	comcerto2k (hf)	            X              ok       ok       ok        ok       (cannot test)
+	ppc853x		            -              ok       --       --        --       (cannot test)
+	qoriq		            -              ok       --       --        --       (cannot test)
+
+(sf)	Softfloat
+(hf)	Hardfloat
 
 
 Generating the toolchain
