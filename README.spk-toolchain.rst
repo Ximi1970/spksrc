@@ -5,25 +5,44 @@ How to use the spk toolchain-gccxx package
 The toolchain-gccxx package creates a new toolchain for a synology architecture.
 
 
-Status of the toolchains::
+Status of the toolchains for DSM 4.3::
+
+	architecture    ( toolchains:    	binutils    gcc    glibc )  binaries
+			47 48 49 51 52
+	
+	bromolow	
+	cedarview	
+	evansport	
+	x86		
+	88f6281		
+	armada370	
+	armadaxp	
+	ppc853x		
+	qoriq		
+
+
+Status of the toolchains for DSM 5.2::
 
 	architecture    ( toolchains:    	binutils    gcc    glibc )  binaries    helloworld
 			47 48 49 51 52
 	
-	avoton	        x  x                       ok       ok       ok        ok       (cannot test)
-	bromolow        x                          ok       ok       ok        ok       (cannot test)
-	cedarview       x  x  x  -                 ok       ok       ok        ok       ok
-	evansport       x  x                       ok       ok       ok        ok       (cannot test)
-	x64             x                          ok       ok       ok        ok       (cannot test)
-	x86             x                          ok       ok       ok        ok       (cannot test)
-	88f6281         x  x  x                    ok       ok       ok        ok       ok
-	armada370       x                          ok       ok       ok        ok       (cannot test)
-	armada375       x                          ok       ok       ok        ok       (cannot test)
-	armadaxp        x                          ok       ok       ok        ok       (cannot test)
-	alpine		x                          ok       ok       ok        ok       (cannot test)
-	comcerto2k	x     x                    ok       ok       ok        ok       (cannot test)
-	ppc853x		-  -  -  -  -
-	qoriq		-  -  -  -  -
+	avoton		            X              ok       ok       ok        ok       (cannot test)
+	bromolow	            X              ok       ok       ok        ok       (cannot test)
+	cedarview	            x              ok       ok       ok        ok       ok
+	evansport	            x              ok       ok       ok        ok       (cannot test)
+	x64		            X              ok       ok       ok        ok       (cannot test)
+	x86		            X              ok       ok       ok        ok       (cannot test)
+	88f6281 (sf)	            X              ok       ok       ok        ok       ok
+	armada370 (sf)	            X              ok       ok       ok        ok       (cannot test)
+	armada375 (sf)	            X              ok       ok       ok        ok       (cannot test)
+	armadaxp (sf)	            X              ok       ok       ok        ok       (cannot test)
+	alpine		            -              --       --       --        --       (cannot test)
+	comcerto2k (hf)	            X              ok       ok       ok        ok       (cannot test)
+	ppc853x		            -              ok       --       --        --       (cannot test)
+	qoriq		            -              ok       --       --        --       (cannot test)
+
+(sf)	Softfloat
+(hf)	Hardfloat
 
 
 Generating the toolchain
