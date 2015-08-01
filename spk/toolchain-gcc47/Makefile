@@ -158,10 +158,24 @@ myPreDepend:
 		echo "TC_PREFIX = $(MAIN_MAKE_TOOLCHAIN_TARGET)" >> Makefile ; \
 		echo "TC_TARGET = $(MAIN_MAKE_TOOLCHAIN_TARGET)" >> Makefile ; \
 		echo >> Makefile ; \
-		echo "TC_CFLAGS =" >> Makefile ; \
-		echo "TC_CPPFLAGS =" >> Makefile ; \
-		echo "TC_CXXFLAGS =" >> Makefile ; \
-		echo "TC_LDFLAGS =" >> Makefile ; \
+		if [ "$(ARCH)" == "armada370" ] || [ "$(ARCH)" == "armadaxp" ] ; then \
+		    echo "TC_CFLAGS = -mcpu=marvell-pj4 -march=armv7-a -mfpu=vfpv3-d16 -mfloat-abi=hard -DSYNO_MARVELL_ARMADA370 -DSYNO_PLATFORM=MARVELL_ARMADA370" >> Makefile ; \
+		    echo "TC_CPPFLAGS = -mcpu=marvell-pj4 -march=armv7-a -mfpu=vfpv3-d16 -mfloat-abi=hard -DSYNO_MARVELL_ARMADA370 -DSYNO_PLATFORM=MARVELL_ARMADA370" >> Makefile ; \
+		    echo "TC_CXXFLAGS = -mcpu=marvell-pj4 -march=armv7-a -mfpu=vfpv3-d16 -mfloat-abi=hard -DSYNO_MARVELL_ARMADA370 -DSYNO_PLATFORM=MARVELL_ARMADA370" >> Makefile ; \
+		    echo "TC_LDFLAGS = -mcpu=marvell-pj4 -march=armv7-a -mfpu=vfpv3-d16 -mfloat-abi=hard" >> Makefile ; \
+		else \
+		if [ "$(ARCH)" == "ppc853x" ] ; then \
+		    echo "TC_CFLAGS = -mcpu=8548 -mhard-float -mfloat-gprs=double" >> Makefile ; \
+		    echo "TC_CPPFLAGS = -mcpu=8548 -mhard-float -mfloat-gprs=double" >> Makefile ; \
+		    echo "TC_CXXFLAGS = -mcpu=8548 -mhard-float -mfloat-gprs=double" >> Makefile ; \
+		    echo "TC_LDFLAGS =" >> Makefile ; \
+		else \
+		    echo "TC_CFLAGS =" >> Makefile ; \
+		    echo "TC_CPPFLAGS =" >> Makefile ; \
+		    echo "TC_CXXFLAGS =" >> Makefile ; \
+		    echo "TC_LDFLAGS =" >> Makefile ; \
+		fi ; \
+		fi ; \
 		echo >> Makefile ; \
 		echo "include ../../mk/spksrc.tc.mk" >> Makefile ; \
 		popd ; \
