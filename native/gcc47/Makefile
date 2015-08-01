@@ -58,6 +58,10 @@ CONFIGURE_ARGS += --with-mpfr-lib=$(WORK_DIR)/../../mpfr/work-native/install/usr
 CONFIGURE_ARGS += --with-mpc-include=$(WORK_DIR)/../../mpc/work-native/install/usr/local/include
 CONFIGURE_ARGS += --with-mpc-lib=$(WORK_DIR)/../../mpc/work-native/install/usr/local/$(LIBDIR)
 
+ifneq ($(findstring $(ARCH), alpine armada370 armada375 armadaxp comcerto2k ppc853x qoriq),)
+CONFIGURE_ARGS += --with-float=hard
+endif
+
 
 include ../../mk/spksrc.native-cc.mk
 
