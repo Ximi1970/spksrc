@@ -38,8 +38,8 @@ Status of the toolchains for DSM 5.1::
 	armadaxp (hf)	            X             ok      ok      ok    ok         ok
 	alpine (hf)	            X             ok      ok      ok    ok         ok
 	comcerto2k (hf)	            X             ok      ok      ok    ok         ok
-	ppc853x (hf)	                          
-	qoriq (hf)	                          
+	ppc853x (hf)	            -             ok      ok      boot  --         --
+	qoriq (hf)	            -             ok      ok      boot  --         --
 
 
 Status of the toolchains for DSM 5.2::
@@ -59,8 +59,8 @@ Status of the toolchains for DSM 5.2::
 	armadaxp (hf)	            X             ok      ok      ok    ok         ok     (cannot test)
 	alpine (hf)	            X             ok      ok      ok    ok         ok     (cannot test)
 	comcerto2k (hf)	            X             ok      ok      ok    ok         ok     (cannot test)
-	ppc853x (hf)	            -             --      --      --    --         --     (cannot test)
-	qoriq (hf)	            -             --      --      --    --         --     (cannot test)
+	ppc853x (hf)	            -             ok      ok      boot  --         --     (cannot test)
+	qoriq (hf)	            -             ok      ok      boot  --         --     (cannot test)
 
 (sf)	Softfloat
 (hf)	Hardfloat
