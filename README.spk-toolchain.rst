@@ -27,14 +27,14 @@ Status of the toolchains for DSM 5.1::
 			47 48 49 51 52
 	
 	avoton		            X             ok      ok      ok    ok         ok
-	bromolow	                          
+	bromolow	            X             ok      ok      ok    ok         ok
 	cedarview	            X             ok      ok      ok    ok         ok
-	evansport	                          
-	x64		                          
-	x86		                          
+	evansport	            X             ok      ok      ok    ok         ok
+	x64		            X             ok      ok      ok    ok         ok
+	x86		            X             ok      ok      ok    ok         ok
 	88f6281 (sf)	                          
-	armada370 (hf)	                          
-	armada375 (hf)	                          
+	armada370 (hf)	            X             ok      ok      ok    ok         ok
+	armada375 (hf)	            X             ok      ok      ok    ok         ok
 	armadaxp (hf)	            X             ok      ok      ok    ok         ok
 	alpine (hf)	            X             ok      ok      ok    ok         ok
 	comcerto2k (hf)	            X             ok      ok      ok    ok         ok
