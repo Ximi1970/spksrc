@@ -32,7 +32,7 @@ Status of the toolchains for DSM 5.1::
 	evansport	            X             ok      ok      ok    ok         ok
 	x64		            X             ok      ok      ok    ok         ok
 	x86		            X             ok      ok      ok    ok         ok
-	88f6281 (sf)	                          
+	88f6281 (sf)	            X             ok      ok      ok    ok         ok
 	armada370 (hf)	            X             ok      ok      ok    ok         ok
 	armada375 (hf)	            X             ok      ok      ok    ok         ok
 	armadaxp (hf)	            X             ok      ok      ok    ok         ok
