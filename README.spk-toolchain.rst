@@ -30,11 +30,11 @@ Status of the toolchains for DSM 5.1::
 	bromolow	         X  X             ok      ok      ok    ok         ok
 	cedarview	         X  X             ok      ok      ok    ok         ok
 	evansport	         X  X             ok      ok      ok    ok         ok
-	x64		            X             ok      ok      ok    ok         ok
-	x86		            X             ok      ok      ok    ok         ok
+	x64		         X  X             ok      ok      ok    ok         ok
+	x86		         X  X             ok      ok      ok    ok         ok
 	88f6281 (sf)	         X  X             ok      ok      ok    ok         ok
-	armada370 (hf)	            X             ok      ok      ok    ok         ok
-	armada375 (hf)	            X             ok      ok      ok    ok         ok
+	armada370 (hf)	         X  X             ok      ok      ok    ok         ok
+	armada375 (hf)	         X  X             ok      ok      ok    ok         ok
 	armadaxp (hf)	         X  X             ok      ok      ok    ok         ok
 	alpine (hf)	         X  X             ok      ok      ok    ok         ok
 	comcerto2k (hf)	         X  X             ok      ok      ok    ok         ok
@@ -50,12 +50,12 @@ Status of the toolchains for DSM 5.2::
 	avoton		         X  X             ok      ok      ok    ok         ok     (cannot test)
 	bromolow	         X  X             ok      ok      ok    ok         ok     (cannot test)
 	cedarview	X  X  X  X  x             ok      ok      ok    ok         ok     ok
-	evansport	            x             ok      ok      ok    ok         ok     (cannot test)
-	x64		            X             ok      ok      ok    ok         ok     (cannot test)
-	x86		            X             ok      ok      ok    ok         ok     (cannot test)
+	evansport	         X  x             ok      ok      ok    ok         ok     (cannot test)
+	x64		         X  X             ok      ok      ok    ok         ok     (cannot test)
+	x86		         X  X             ok      ok      ok    ok         ok     (cannot test)
 	88f6281 (sf)	         X  X             ok      ok      ok    ok         ok     ok
-	armada370 (hf)	            X             ok      ok      ok    ok         ok     (cannot test)
-	armada375 (hf)	            X             ok      ok      ok    ok         ok     (cannot test)
+	armada370 (hf)	         X  X             ok      ok      ok    ok         ok     (cannot test)
+	armada375 (hf)	         X  X             ok      ok      ok    ok         ok     (cannot test)
 	armadaxp (hf)	         X  X             ok      ok      ok    ok         ok     (cannot test)
 	alpine (hf)	         X  X             ok      ok      ok    ok         ok     (cannot test)
 	comcerto2k (hf)	         X  X             ok      ok      ok    ok         ok     (cannot test)
