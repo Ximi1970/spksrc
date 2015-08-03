@@ -26,18 +26,18 @@ Status of the toolchains for DSM 5.1::
 	architecture    ( toolchains:    	kernel  binutils  gcc  glibc )  binaries
 			47 48 49 51 52
 	
-	avoton		            X             ok      ok      ok    ok         ok
-	bromolow	            X             ok      ok      ok    ok         ok
-	cedarview	            X             ok      ok      ok    ok         ok
-	evansport	            X             ok      ok      ok    ok         ok
+	avoton		         X  X             ok      ok      ok    ok         ok
+	bromolow	         X  X             ok      ok      ok    ok         ok
+	cedarview	         X  X             ok      ok      ok    ok         ok
+	evansport	         X  X             ok      ok      ok    ok         ok
 	x64		            X             ok      ok      ok    ok         ok
 	x86		            X             ok      ok      ok    ok         ok
-	88f6281 (sf)	            X             ok      ok      ok    ok         ok
+	88f6281 (sf)	         X  X             ok      ok      ok    ok         ok
 	armada370 (hf)	            X             ok      ok      ok    ok         ok
 	armada375 (hf)	            X             ok      ok      ok    ok         ok
-	armadaxp (hf)	            X             ok      ok      ok    ok         ok
-	alpine (hf)	            X             ok      ok      ok    ok         ok
-	comcerto2k (hf)	            X             ok      ok      ok    ok         ok
+	armadaxp (hf)	         X  X             ok      ok      ok    ok         ok
+	alpine (hf)	         X  X             ok      ok      ok    ok         ok
+	comcerto2k (hf)	         X  X             ok      ok      ok    ok         ok
 	ppc853x (hf)	            -             ok      ok      boot  --         --
 	qoriq (hf)	            -             ok      ok      boot  --         --
 
@@ -47,18 +47,18 @@ Status of the toolchains for DSM 5.2::
 	architecture    ( toolchains:    	kernel  binutils  gcc  glibc )  binaries  helloworld
 			47 48 49 51 52
 	
-	avoton		            X             ok      ok      ok    ok         ok     (cannot test)
-	bromolow	            X             ok      ok      ok    ok         ok     (cannot test)
-	cedarview	            x             ok      ok      ok    ok         ok     ok
+	avoton		         X  X             ok      ok      ok    ok         ok     (cannot test)
+	bromolow	         X  X             ok      ok      ok    ok         ok     (cannot test)
+	cedarview	X  X  X  X  x             ok      ok      ok    ok         ok     ok
 	evansport	            x             ok      ok      ok    ok         ok     (cannot test)
 	x64		            X             ok      ok      ok    ok         ok     (cannot test)
 	x86		            X             ok      ok      ok    ok         ok     (cannot test)
-	88f6281 (sf)	            X             ok      ok      ok    ok         ok     ok
+	88f6281 (sf)	         X  X             ok      ok      ok    ok         ok     ok
 	armada370 (hf)	            X             ok      ok      ok    ok         ok     (cannot test)
 	armada375 (hf)	            X             ok      ok      ok    ok         ok     (cannot test)
-	armadaxp (hf)	            X             ok      ok      ok    ok         ok     (cannot test)
-	alpine (hf)	            X             ok      ok      ok    ok         ok     (cannot test)
-	comcerto2k (hf)	            X             ok      ok      ok    ok         ok     (cannot test)
+	armadaxp (hf)	         X  X             ok      ok      ok    ok         ok     (cannot test)
+	alpine (hf)	         X  X             ok      ok      ok    ok         ok     (cannot test)
+	comcerto2k (hf)	         X  X             ok      ok      ok    ok         ok     (cannot test)
 	ppc853x (hf)	            -             ok      ok      boot  --         --     (cannot test)
 	qoriq (hf)	            -             ok      ok      boot  --         --     (cannot test)
 
