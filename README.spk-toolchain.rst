@@ -38,8 +38,8 @@ Status of the toolchains for DSM 5.1::
 	armadaxp (hf)	      X  X  X             ok      ok      ok    ok         ok
 	alpine (hf)	      X  X  X             ok      ok      ok    ok         ok
 	comcerto2k (hf)	      X  X  X             ok      ok      ok    ok         ok
-	ppc853x (hf)	-  -  -  -  -             ok      ok      boot  --         --     (cannot test)
-	qoriq (hf)	-  -  -  -  -             ok      ok      boot  --         --     (cannot test)
+	ppc853x (hf)	      X  X  X             ok      ok      ok    ok         ok
+	qoriq (hf)	      x  X  X             ok      ok      ok    ok         ok
 
 
 Status of the toolchains for DSM 5.2::
@@ -53,14 +53,14 @@ Status of the toolchains for DSM 5.2::
 	evansport	      X  X  x             ok      ok      ok    ok         ok     (cannot test)
 	x64		      X  X  X             ok      ok      ok    ok         ok     (cannot test)
 	x86		      X  X  X             ok      ok      ok    ok         ok     (cannot test)
-	88f6281 (sf)	      X  X  X             ok      ok      ok    ok         ok     ok
+	88f6281 (sf)	   X  X  X  X             ok      ok      ok    ok         ok     ok
 	armada370 (hf)	      X  X  X             ok      ok      ok    ok         ok     (cannot test)
 	armada375 (hf)	      X  X  X             ok      ok      ok    ok         ok     (cannot test)
 	armadaxp (hf)	      X  X  X             ok      ok      ok    ok         ok     (cannot test)
 	alpine (hf)	      X  X  X             ok      ok      ok    ok         ok     (cannot test)
 	comcerto2k (hf)	      X  X  X             ok      ok      ok    ok         ok     (cannot test)
-	ppc853x (hf)	-  -  -  -  X             ok      ok      ok    ok         ok     (cannot test)
-	qoriq (hf)	-  -  -  -  X             ok      ok      ok    ok         ok     (cannot test)
+	ppc853x (hf)	-  -  X  X  X             ok      ok      ok    ok         ok     (cannot test)
+	qoriq (hf)	-  -  X  X  X             ok      ok      ok    ok         ok     (cannot test)
 
 (sf)	Softfloat
 (hf)	Hardfloat
