@@ -61,6 +61,9 @@ CONFIGURE_ARGS += --with-mpc-lib=$(WORK_DIR)/../../mpc/work-native/install/usr/l
 ifneq ($(findstring $(ARCH), alpine armada370 armada375 armadaxp comcerto2k ppc853x qoriq),)
 CONFIGURE_ARGS += --with-float=hard
 endif
+ifneq ($(findstring $(ARCH), ppc853x qoriq),)
+CONFIGURE_ARGS += --enable-secureplt --with-long-double-128 --with-cpu=default32 --with-cpu-64=power4
+endif
 
 
 include ../../mk/spksrc.native-cc.mk
