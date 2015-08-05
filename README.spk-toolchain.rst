@@ -18,7 +18,7 @@ Status of the toolchains for DSM 4.3::
 	armada370 (hf)	            X             ok      ok      ok    ok         ok
 	armadaxp (hf)	            X             ok      ok      ok    ok         ok
 	ppc853x (hf)	            X             ok      ok      ok    ok         ok
-	qoriq (hf)	            X              ok      ok      ok    ok         ok
+	qoriq (hf)	            X             ok      ok      ok    ok         ok
 
 
 Status of the toolchains for DSM 5.1::
