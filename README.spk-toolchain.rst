@@ -31,13 +31,13 @@ Status of the toolchains for DSM 5.1::
 	cedarview	X  X  X  X  X             ok      ok      ok    ok         ok
 	evansport	X  X  X  X  X             ok      ok      ok    ok         ok
 	x64		X  X  X  X  X             ok      ok      ok    ok         ok
-	x86		   X  X  X  X             ok      ok      ok    ok         ok
-	88f6281 (sf)	      X  X  X             ok      ok      ok    ok         ok
-	armada370 (hf)	      X  X  X             ok      ok      ok    ok         ok
-	armada375 (hf)	      X  X  X             ok      ok      ok    ok         ok
-	armadaxp (hf)	      X  X  X             ok      ok      ok    ok         ok
-	alpine (hf)	      X  X  X             ok      ok      ok    ok         ok
-	comcerto2k (hf)	      X  X  X             ok      ok      ok    ok         ok
+	x86		X  X  X  X  X             ok      ok      ok    ok         ok
+	88f6281 (sf)	X  X  X  X  X             ok      ok      ok    ok         ok
+	armada370 (hf)	X  X  X  X  X             ok      ok      ok    ok         ok
+	armada375 (hf)	X  X  X  X  X             ok      ok      ok    ok         ok
+	armadaxp (hf)	X  X  X  X  X             ok      ok      ok    ok         ok
+	alpine (hf)	X  X  X  X  X             ok      ok      ok    ok         ok
+	comcerto2k (hf)	X  X  X  X  X             ok      ok      ok    ok         ok
 	ppc853x (hf)	-  -  X  X  X             ok      ok      ok    ok         ok
 	qoriq (hf)	-  -  X  X  X             ok      ok      ok    ok         ok
 
