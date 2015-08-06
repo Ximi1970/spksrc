@@ -10,11 +10,11 @@ Status of the toolchains for DSM 4.3::
 	architecture    ( toolchains:    	kernel  binutils  gcc  glibc )  binaries
 			47 48 49 51 52
 	
-	bromolow	            X             ok      ok      ok    ok         ok
-	cedarview	            X             ok      ok      ok    ok         ok
-	evansport	            X             ok      ok      ok    ok         ok
-	x86		            X             ok      ok      ok    ok         ok
-	88f6281 (sf)	            X             ok      ok      ok    ok         ok
+	bromolow	         X  X             ok      ok      ok    ok         ok
+	cedarview	         X  X             ok      ok      ok    ok         ok
+	evansport	         X  X             ok      ok      ok    ok         ok
+	x86		         X  X             ok      ok      ok    ok         ok
+	88f6281 (sf)	         X  X             ok      ok      ok    ok         ok
 	armada370 (hf)	            X             ok      ok      ok    ok         ok
 	armadaxp (hf)	            X             ok      ok      ok    ok         ok
 	ppc853x (hf)	            X             ok      ok      ok    ok         ok
