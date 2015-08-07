@@ -15,10 +15,10 @@ Status of the toolchains for DSM 4.3::
 	evansport	         X  X             ok      ok      ok    ok         ok
 	x86		         X  X             ok      ok      ok    ok         ok
 	88f6281 (sf)	         X  X             ok      ok      ok    ok         ok
-	armada370 (hf)	            X             ok      ok      ok    ok         ok
-	armadaxp (hf)	            X             ok      ok      ok    ok         ok
-	ppc853x (hf)	            X             ok      ok      ok    ok         ok
-	qoriq (hf)	            X             ok      ok      ok    ok         ok
+	armada370 (hf)	         X  X             ok      ok      ok    ok         ok
+	armadaxp (hf)	         X  X             ok      ok      ok    ok         ok
+	ppc853x (hf)	         X  X             ok      ok      ok    ok         ok
+	qoriq (hf)	         X  X             ok      ok      ok    ok         ok
 
 
 Status of the toolchains for DSM 5.1::
