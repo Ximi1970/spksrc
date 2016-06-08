@@ -1,7 +1,10 @@
-FROM 32bit/debian:jessie
+FROM debian:jessie
 MAINTAINER SynoCommunity <https://synocommunity.com>
 
 ENV LANG C.UTF-8
+
+# Manage i386 arch
+RUN dpkg --add-architecture i386
 
 # Install required packages
 RUN apt-get update && \
@@ -9,6 +12,7 @@ RUN apt-get update && \
         bison \
         build-essential \
         check \
+        cmake \
         curl \
         cython \
         debootstrap \
@@ -19,15 +23,18 @@ RUN apt-get update && \
         gperf \
         imagemagick \
         intltool \
+        libc6-i386 \
+        libcppunit-dev \
         libffi-dev \
         libgc-dev \
         libltdl-dev \
         libssl-dev \
         libunistring-dev \
+        lzip \
         mercurial \
         ncurses-dev \
         pkg-config \
-        python3-pip \
+        python3 \
         subversion \
         swig \
         xmlto \
@@ -35,10 +42,12 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# Install setuptools, pip, virtualenv, wheel and httpie
-RUN wget https://bootstrap.pypa.io/ez_setup.py -O - | python
+# Install setuptools, wheel and pip for Python3
+RUN wget https://bootstrap.pypa.io/get-pip.py -O - | python3
+
+# Install setuptools, pip, virtualenv, wheel and httpie for Python2
 RUN wget https://bootstrap.pypa.io/get-pip.py -O - | python
-RUN pip install virtualenv wheel httpie
+RUN pip install virtualenv httpie
 
 # Volume pointing to spksrc sources
 VOLUME /spksrc
