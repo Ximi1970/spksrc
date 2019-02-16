@@ -24,17 +24,14 @@ postinst ()
     ${VIRTUALENV} ${INSTALL_DIR}/env > /dev/null
 
     # Install the wheels
-    ${INSTALL_DIR}/env/bin/pip install --use-wheel --no-deps --no-index -U --force-reinstall -f ${INSTALL_DIR}/share/wheelhouse -r ${INSTALL_DIR}/share/wheelhouse/requirements.txt > /dev/null 2>&1
+    ${INSTALL_DIR}/env/bin/pip install --no-deps --no-index -U --force-reinstall -f ${INSTALL_DIR}/share/wheelhouse ${INSTALL_DIR}/share/wheelhouse/*.whl > /dev/null 2>&1
 
     # Fix shebang
-  	sed -i -e "s|^#!.*$|#!${INSTALL_DIR}/env/bin/python|g" ${INSTALL_DIR}/env/bin/rdiff-backup
+    sed -i -e "s|^#!.*$|#!${INSTALL_DIR}/env/bin/python|g" ${INSTALL_DIR}/env/bin/rdiff-backup
 
     # Add symlink
     mkdir -p /usr/local/bin
     ln -s ${INSTALL_DIR}/env/bin/rdiff-backup /usr/local/bin/rdiff-backup
-
-    # Correct the files ownership
-    chown -R ${USER}:root ${SYNOPKG_PKGDEST}
 
     exit 0
 }
@@ -49,6 +46,7 @@ postuninst ()
     # Remove link
     rm -f ${INSTALL_DIR}
     rm -f /usr/local/bin/rdiff-backup
+
     exit 0
 }
 
