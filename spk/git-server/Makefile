@@ -17,10 +17,9 @@ RELOAD_UI = yes
 HOMEPAGE = http://git-scm.com/
 LICENSE  =
 
-WIZARDS_DIR = src/wizard
-
 INSTALLER_SCRIPT = src/installer.sh
 SSS_SCRIPT       = src/dsm-control.sh
+CONF_DIR         = src/conf/
 
 INSTALL_DEP_SERVICES = apache-web
 START_DEP_SERVICES = apache-web
@@ -52,9 +51,3 @@ git_server_extra_install:
 	rm -rf $(STAGING_DIR)/share/gitolite/.git*
 	install -m 755 -d $(STAGING_DIR)/app
 	install -m 644 src/app/config $(STAGING_DIR)/app/config
-	install -m 755 -d $(STAGING_DIR)/app/images
-	for size in 16 24 32 48 72 ; \
-	do \
-		convert $(SPK_ICON) -thumbnail $${size}x$${size} \
-		$(STAGING_DIR)/app/images/$(SPK_NAME)-$${size}.png ; \
-	done
