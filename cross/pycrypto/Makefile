@@ -14,3 +14,5 @@ LICENSE  = Public domain
 ENV += cross_compiling=yes
 
 include ../../mk/spksrc.python-module.mk
+
+ADDITIONAL_LDFLAGS = -L$(STAGING_INSTALL_PREFIX)/lib

@@ -1,35 +1,17 @@
 SPK_NAME = ffmpeg
-SPK_VERS = 2.1.1
-SPK_REV = 1
+SPK_VERS = 4.1
+SPK_REV = 11
 SPK_ICON = src/ffmpeg.png
-DSM_UI_DIR = app
-CHANGELOG = update ffmpeg
+CHANGELOG = "1. Update ffmpeg to 4.1<br/>2. Update ffmpeg dependencies<br/>3. Add VAAPI for intel x64 processors<br/>4. Fix HDR10Plus support in x265<br/>5. Fix x265 support for ppc platforms"
 
 DEPENDS = cross/$(SPK_NAME)
 
-MAINTAINER = cytec
+MAINTAINER = m4tt075
 DESCRIPTION = FFmpeg is a complete, cross-platform solution to record, convert and stream audio and video. It includes libavcodec - the leading audio/video codec library.
-RELOAD_UI = yes
 DISPLAY_NAME = ffmpeg
+STARTABLE = no
 
 HOMEPAGE = http://www.ffmpeg.org/
-LICENSE  =
-
-INSTALLER_SCRIPT = src/installer.sh
-SSS_SCRIPT       = src/dsm-control.sh
-
-INSTALL_PREFIX = /usr/local/$(SPK_NAME)
-
-POST_STRIP_TARGET = ffmpeg_extra_install
-
+LICENSE  = GPLv3
 
 include ../../mk/spksrc.spk.mk
-
-.PHONY: ffmpeg_extra_install
-znc_extra_install:
-	install -m 755 -d $(STAGING_DIR)/app
-	install -m 755 -d $(STAGING_DIR)/app/images
-	for size in 16 24 32 48; do \
-		convert $(SPK_ICON) -thumbnail $${size}x$${size} \
-		        $(STAGING_DIR)/app/images/$(SPK_NAME)-$${size}.png ; \
-	done

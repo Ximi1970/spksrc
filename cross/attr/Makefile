@@ -8,12 +8,13 @@ PKG_DIR = $(PKG_NAME)-$(PKG_VERS)
 DEPENDS =
 
 HOMEPAGE = http://kernel.org/
-COMMENT  = 
-LICENSE  = 
+COMMENT  = Extended attribute package
+LICENSE  = GPLv2+
 
 PRE_CONFIGURE_TARGET = myPreConfigure
 INSTALL_TARGET = myInstall
 GNU_CONFIGURE = 1
+CONFIGURE_ARGS = --enable-static=no
 
 
 include ../../mk/spksrc.cross-cc.mk

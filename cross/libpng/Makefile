@@ -1,8 +1,8 @@
 PKG_NAME = libpng
-PKG_VERS = 1.6.21
+PKG_VERS = 1.6.36
 PKG_EXT = tar.xz
 PKG_DIST_NAME = $(PKG_NAME)-$(PKG_VERS).$(PKG_EXT)
-PKG_DIST_SITE = ftp://ftp.simplesystems.org/pub/libpng/png/src/libpng16
+PKG_DIST_SITE = http://download.sourceforge.net/libpng
 PKG_DIR = $(PKG_NAME)-$(PKG_VERS)
 
 DEPENDS = cross/zlib

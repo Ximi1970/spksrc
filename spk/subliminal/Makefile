@@ -11,7 +11,7 @@ SPK_DEPENDS = "python>=2.7.6-8"
 
 MAINTAINER = Diaoul
 DESCRIPTION = Subliminal allows you automatically download best-matching subtitles for your movies and tv shows on your DiskStation. This package is named after Subliminal, the Python library used to search and download subtitles.
-DESCRIPTION_FRE = Subliminal vous permet de télécharger automatiquement les meilleurs sous-titres pour vos films et séries sur votre DiskStation. Ce paquet est nommé d\\\'après Subliminal, la librairie Python utilisée pour rechercher et télécharger les sous-titres.
+DESCRIPTION_FRE = Subliminal vous permet de télécharger automatiquement les meilleurs sous-titres pour vos films et séries sur votre DiskStation. Ce paquet est nommé d\'après Subliminal, la librairie Python utilisée pour rechercher et télécharger les sous-titres.
 RELOAD_UI = yes
 DISPLAY_NAME = Subliminal
 CHANGELOG = "Update to Subliminal 0.7.5"
@@ -22,10 +22,11 @@ HELPURL    = http://synocommunity.com/help/subliminal
 
 INSTALLER_SCRIPT = src/installer.sh
 SSS_SCRIPT       = src/dsm-control.sh
+CONF_DIR         = src/conf/
+WIZARDS_DIR      = src/wizard/
 
 INSTALL_PREFIX = /usr/local/$(SPK_NAME)
 
-COPY_TARGET = nop
 POST_STRIP_TARGET = subliminal_extra_install
 
 # Pure Python package, make sure ARCH is not defined
@@ -35,8 +36,6 @@ include ../../mk/spksrc.spk.mk
 
 .PHONY: subliminal_extra_install
 subliminal_extra_install:
-	install -m 755 -d ${STAGING_DIR}/share/wheelhouse
-	install -m 644 ${WORK_DIR}/wheelhouse/* ${STAGING_DIR}/share/wheelhouse/
 	install -m 755 -d $(STAGING_DIR)/var
 	install -m 755 -d $(STAGING_DIR)/app
 	install -m 755 -d $(STAGING_DIR)/cache
@@ -58,7 +57,3 @@ subliminal_extra_install:
 	install -m 644 src/app/images/*.png $(STAGING_DIR)/app/images/
 	install -m 755 -d $(STAGING_DIR)/app/images/superboxselect
 	install -m 644 src/app/images/superboxselect/*.png $(STAGING_DIR)/app/images/superboxselect/
-	for size in 16 24 32 48 72; do \
-		convert $(SPK_ICON) -thumbnail $${size}x$${size} \
-		        $(STAGING_DIR)/app/images/$(SPK_NAME)-$${size}.png ; \
-	done

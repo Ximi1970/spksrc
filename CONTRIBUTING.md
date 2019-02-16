@@ -37,7 +37,7 @@ Content:
 * Model, arch and DSM version of your NAS. See [Architecture per Synology model](https://github.com/SynoCommunity/spksrc/wiki/Architecture-per-Synology-model);
 * Provide log files if available. Sometimes a log is shown in Package Center for that package. There might be a log available at `/usr/local/{package}/var/`;
 * Wrap larger logs between triple backticks (```). Log files over ten lines should be placed on gist.github.com, Pastebin etc., and linked in the issue;
-* If the package doesn't start, try to start the package via the command line: `/var/packages/{package}/scripts/start-stop-status start`, and provide the output.
+* If the package doesn't start, try to start the package [via the command line](https://github.com/SynoCommunity/spksrc/wiki/Frequently-Asked-Questions#how-to-query-package-status-or-start-from-command-line)  and provide the output.
 
 
 Package Requests
@@ -68,9 +68,4 @@ Pull requests
 ----------
 Pull requests to add packages to the [SynoCommunity repository](https://synocommunity.com) are always welcome, as are improvements to the spksrc framework or existing packages.
 
-You'll first need to set up a development environment as outlined in the [README](https://github.com/SynoCommunity/spksrc/blob/master/README.rst#setup-development-environment). After that:
-* Fork and clone spksrc: ``git clone https://You@github.com/You/spksrc.git``
-* Create a new topic branch: `git checkout -b newfeature master`;
-* After completing and testing your changes, submit a pull request.
-
-A general approach on how to develop packages is outlined in the [spksrc example wiki page](https://github.com/SynoCommunity/spksrc/wiki/spksrc-example).
+Once you have a development environment set up, you can start building packages, create new ones, or improve upon existing packages while making your changes available to other people. See the [Developers HOW-TO](https://github.com/SynoCommunity/spksrc/wiki/Developers-HOW-TO) for information on how to use spksrc.
