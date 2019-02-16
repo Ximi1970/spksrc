@@ -15,6 +15,7 @@ COOKIE_PREFIX = $(TC_NAME)-
 DIST_FILE     = $(TOOLCHAINS_DIR)/$(TC_VERS)/$(TC_DIST_NAME)
 DIST_EXT      = $(TC_EXT)
 DISTRIB_DIR   = $(TOOLCHAINS_DIR)/$(TC_VERS)
+LOCAL_FILE    = $(TC_DIST_NAME)
 
 #####
 
@@ -118,6 +119,7 @@ tc_vars: patch
 	@echo CXXFLAGS := $(CXXFLAGS) $$\(ADDITIONAL_CXXFLAGS\)
 	@echo LDFLAGS := $(LDFLAGS) $$\(ADDITIONAL_LDFLAGS\)
 	@echo TC_FIRMWARE := $(TC_FIRMWARE)
+	@echo TC_OS_MIN_VER := $(TC_OS_MIN_VER)
 	@echo TC_ARCH := $(TC_ARCH)
 
 
@@ -125,14 +127,14 @@ tc_vars: patch
 clean:
 	rm -fr $(WORK_DIR)
 
-$(DIGESTS_FILE):
+$(DIGESTS_FILE): download
 	@$(MSG) "Generating digests for $(TC_NAME)"
 	@rm -f $@ && touch -f $@
 	@for type in SHA1 SHA256 MD5; do \
 	  case $$type in \
-	    SHA1|sha1)     tool=sha1sum ;; \
-	    SHA256|sha256) tool=sha256sum ;; \
-	    MD5|md5)       tool=md5sum ;; \
+	    SHA1)     tool=sha1sum ;; \
+	    SHA256)   tool=sha256sum ;; \
+	    MD5)      tool=md5sum ;; \
 	  esac ; \
-	  echo "$(TC_DIST_NAME) $$type `$$tool $(DISTRIB_DIR)/$(TC_DIST_NAME) | cut -d\" \" -f1`" >> $@ ; \
+	  echo "$(LOCAL_FILE) $$type `$$tool $(DISTRIB_DIR)/$(TC_DIST_NAME) | cut -d\" \" -f1`" >> $@ ; \
 	done

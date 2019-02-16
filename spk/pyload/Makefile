@@ -20,11 +20,11 @@ CHANGELOG = Fix updatemanager
 HOMEPAGE   = http://pyload.org
 LICENSE    = GPLv3
 
-WIZARDS_DIR = src/wizard/
-
 INSTALLER_SCRIPT = src/installer.sh
 SSS_SCRIPT       = src/dsm-control.sh
 FWPORTS          = src/${SPK_NAME}.sc
+CONF_DIR         = src/conf/
+WIZARDS_DIR      = src/wizard/
 
 INSTALL_PREFIX = /usr/local/$(SPK_NAME)
 
@@ -41,8 +41,3 @@ pyload_extra_install:
 	install -m 644 src/pyload_init.sql $(STAGING_DIR)/etc/pyload_init.sql
 	install -m 644 src/htaccess.example $(STAGING_DIR)/etc/htaccess.example
 	install -m 755 -d $(STAGING_DIR)/var
-	install -m 755 -d $(STAGING_DIR)/app/images
-	for size in 16 24 32 48 64 72; do \
-		convert $(SPK_ICON) -thumbnail $${size}x$${size} \
-		        $(STAGING_DIR)/app/images/$(SPK_NAME)-$${size}.png ; \
-	done

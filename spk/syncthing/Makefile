@@ -1,29 +1,38 @@
 SPK_NAME = syncthing
-SPK_VERS = 0.13.4
-SPK_REV = 9
+SPK_VERS = 0.14.49
+SPK_REV = 15
 SPK_ICON = src/syncthing.png
 DSM_UI_DIR = app
 
+DEPENDS = cross/busybox cross/$(SPK_NAME)
+
 UNSUPPORTED_ARCHS = $(PPC_ARCHES)
 
-DEPENDS  = cross/busybox cross/$(SPK_NAME)
-
-MAINTAINER = cytec
+MAINTAINER = Safihre
 DESCRIPTION = Automatically sync files via secure, distributed technology.
-DESCRIPTION_FRE = Synchronisation automatique de fichiers via une technologie sûre et distribuée.
-ADMIN_PORT = 7070
+DESCRIPTION_FRE = Synchronisation automatique de fichiers via une technologie sécurisée et distribuée.
 RELOAD_UI = yes
 DISPLAY_NAME = Syncthing
-CHANGELOG = "Update to 0.13.4"
+CHANGELOG = "Integrate with DSM5+6 Generic Service support for correct permissions."
+HOMEPAGE = http://www.syncthing.net
+LICENSE = MPLv2.0
+STARTABLE = yes
 
-HOMEPAGE   = http://www.syncthing.net
-LICENSE    = MPLv2.0
+WIZARDS_DIR = src/wizard/
 
-INSTALLER_SCRIPT = src/installer.sh
-SSS_SCRIPT       = src/dsm-control.sh
-FWPORTS          = src/${SPK_NAME}.sc
+SERVICE_USER = auto
+SERVICE_SETUP = src/service-setup.sh
+SERVICE_PORT = 8384
+SERVICE_PORT_TITLE = $(DISPLAY_NAME)
 
-INSTALL_PREFIX = /usr/local/$(SPK_NAME)
+# Use busybox start-stop-daemon support
+# Options and environment are provided in service-setup.sh
+SERVICE_EXE = $${SYNOPKG_PKGDEST}/bin/syncthing
+
+# Admin link for in DSM UI
+ADMIN_PORT = $(SERVICE_PORT)
+
+FWPORTS = src/${SPK_NAME}.sc
 
 POST_STRIP_TARGET = syncthing_extra_install
 
@@ -36,10 +45,4 @@ include ../../mk/spksrc.spk.mk
 syncthing_extra_install:
 	install -m 755 -d $(STAGING_DIR)/var
 	install -m 600 src/config.xml $(STAGING_DIR)/var/config.xml
-	install -m 755 -d $(STAGING_DIR)/app
-	install -m 644 src/app/config $(STAGING_DIR)/app/config
-	install -m 755 -d $(STAGING_DIR)/app/images
-	for size in 16 24 32 48 72; do \
-		convert $(SPK_ICON) -thumbnail $${size}x$${size} \
-		        $(STAGING_DIR)/app/images/$(SPK_NAME)-$${size}.png ; \
-	done
+	install -m 644 src/options.conf $(STAGING_DIR)/var/options.conf
